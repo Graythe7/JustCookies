@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class SpawnCookie : MonoBehaviour
 {
-    public GameObject CookiePrefab;
-    public GameObject SyrupPrefab;
+    public GameObject prefabObj;
+    private bool prefabObjHasSpawned = false;
 
-    private bool cookieBaseHasSpawned = false;
-
-    public void SpawnCookieBase()
+    public void SpawnPrefab()
     {
-        if (!cookieBaseHasSpawned)
+        if (!prefabObjHasSpawned)
         {
-            Instantiate(CookiePrefab, transform.position, Quaternion.identity);
-            cookieBaseHasSpawned = true;
+            Instantiate(prefabObj, transform.position, Quaternion.identity);
+            prefabObjHasSpawned = true;
         }
-           
-    }
-
-    public void SpawnSyrup()
-    {
-        Instantiate(SyrupPrefab, transform.position, Quaternion.identity);
     }
 }

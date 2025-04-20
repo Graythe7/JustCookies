@@ -276,7 +276,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1776444239}
         m_TargetAssemblyTypeName: SpawnCookie, Assembly-CSharp
-        m_MethodName: SpawnCookieBase
+        m_MethodName: SpawnPrefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -613,7 +613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71580f6cbc1004e89af9b4dfd949015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsOnBelt: []
 --- !u!1 &1020834705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,8 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CookiePrefab: {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
-  SyrupPrefab: {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
+  prefabObj: {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
 --- !u!1 &1799177247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,8 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CookiePrefab: {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
-  SyrupPrefab: {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
+  prefabObj: {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
 --- !u!212 &1861046367
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1410,7 +1407,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1861046366}
         m_TargetAssemblyTypeName: SpawnCookie, Assembly-CSharp
-        m_MethodName: SpawnSyrup
+        m_MethodName: SpawnPrefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
