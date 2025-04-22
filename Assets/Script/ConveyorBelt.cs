@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
+    public LayerMask targetLayer;
    
     public void MoveForward()
     {
@@ -11,7 +12,8 @@ public class ConveyorBelt : MonoBehaviour
 
         foreach (GameObject obj in allObjects)
         {
-            if (obj.layer == LayerMask.NameToLayer("Cookies"))
+            // Check if the GameObject's layer is included in the targetLayer LayerMask
+            if ((targetLayer.value & (1 << obj.layer)) != 0)
             {
                 obj.transform.position += new Vector3(4f, 0, 0);
             }
@@ -25,7 +27,7 @@ public class ConveyorBelt : MonoBehaviour
 
         foreach (GameObject obj in allObjects)
         {
-            if (obj.layer == LayerMask.NameToLayer("Cookies"))
+            if ((targetLayer.value & (1 << obj.layer)) != 0)
             {
                 obj.transform.position += new Vector3(-4f, 0, 0);
             }

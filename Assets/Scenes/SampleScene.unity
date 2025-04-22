@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 971803398}
   - component: {fileID: 971803397}
   - component: {fileID: 971803396}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DecorSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -845,6 +845,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71580f6cbc1004e89af9b4dfd949015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1792
 --- !u!1 &1020834705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8470976b3f543f2a18b99804bfc722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deliveryBoxPrefab: {fileID: 6846292055483459495, guid: a2491583712164af68edd10fc554f6c5, type: 3}
 --- !u!61 &1207675826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1763,7 +1767,7 @@ GameObject:
   - component: {fileID: 1776444238}
   - component: {fileID: 1776444237}
   - component: {fileID: 1776444239}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BaseSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1998,7 +2002,7 @@ GameObject:
   - component: {fileID: 1861046368}
   - component: {fileID: 1861046367}
   - component: {fileID: 1861046366}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SyrupSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

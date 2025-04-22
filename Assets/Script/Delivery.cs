@@ -4,9 +4,37 @@ using UnityEngine;
 
 public class Delivery : MonoBehaviour
 {
+    public GameObject deliveryBoxPrefab;
+    private float speed = 1f;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("On triggere activates");
-        Destroy(other.gameObject); // 💥 Boom, gone!
+        GameObject newBox = Instantiate(deliveryBoxPrefab, transform.position, Quaternion.identity);
+        Destroy(other.gameObject);
+
+        if(newBox != null)
+        {
+            StartCoroutine(MoveBox(newBox));
+        }
+        
+    }
+
+    private IEnumerator MoveBox(GameObject Box)
+    {
+        while (Box.transform.position.y <= 8 && Box != null)
+        {
+            if(Box.transform.position.y >= 6)
+            {
+                Destroy(Box.gameObject);
+                break;
+            }
+            else
+            {
+                Debug.Log("delivery box moves up");
+                Box.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+            }
+    
+            yield return null;
+        }
     }
 }
