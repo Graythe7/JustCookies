@@ -15,7 +15,7 @@ public class ConveyorBelt : MonoBehaviour
             // Check if the GameObject's layer is included in the targetLayer LayerMask
             if ((targetLayer.value & (1 << obj.layer)) != 0)
             {
-                obj.transform.position += new Vector3(4f, 0, 0);
+                obj.transform.position += new Vector3(3f, 0, 0);
             }
                 
         }
@@ -29,7 +29,7 @@ public class ConveyorBelt : MonoBehaviour
         {
             if ((targetLayer.value & (1 << obj.layer)) != 0)
             {
-                obj.transform.position += new Vector3(-4f, 0, 0);
+                obj.transform.position += new Vector3(-3f, 0, 0);
             }
 
         }
