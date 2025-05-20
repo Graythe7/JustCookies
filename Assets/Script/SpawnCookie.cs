@@ -89,22 +89,20 @@ public class SpawnCookie : MonoBehaviour
         return cookieParts[cookieParts.Count - 1];
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         PlateContainer plate = other.GetComponent<PlateContainer>();
         if (plate != null)
         {
             currentPlate = plate;
-            Debug.Log("Plate detected on station!");
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.GetComponent<PlateContainer>() == currentPlate)
         {
             currentPlate = null;
-            Debug.Log("Plate removed from station.");
         }
     }
 }
