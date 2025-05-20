@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnCookie : MonoBehaviour
 {
+    private PlateContainer currentPlate;
+
     public GameObject prefabObj;
     public string partType; //set this to either 'Base, Syrup, Decor'
     public List<GameObject> cookieParts = new List<GameObject>();
@@ -87,5 +89,22 @@ public class SpawnCookie : MonoBehaviour
         return cookieParts[cookieParts.Count - 1];
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        PlateContainer plate = other.GetComponent<PlateContainer>();
+        if (plate != null)
+        {
+            currentPlate = plate;
+            Debug.Log("Plate detected on station!");
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlateContainer>() == currentPlate)
+        {
+            currentPlate = null;
+            Debug.Log("Plate removed from station.");
+        }
+    }
 }

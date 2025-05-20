@@ -30,7 +30,6 @@ public class Delivery : MonoBehaviour
             }
             else
             {
-                Debug.Log("delivery box moves up");
                 Box.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
             }
     
