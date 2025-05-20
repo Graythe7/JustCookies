@@ -4,97 +4,86 @@ using UnityEngine;
 
 public class SpawnCookie : MonoBehaviour
 {
-    private PlateContainer currentPlate;
+    private PlateContainer currentPlate; // The plate we are currently interacting with
 
-    public GameObject prefabObj;
-    public string partType; //set this to either 'Base, Syrup, Decor'
-    public List<GameObject> cookieParts = new List<GameObject>();
+    public GameObject prefabObj; // The specific prefab for this spawner (e.g., BasePrefab, SyrupPrefab, DecorPrefab)
 
+    // Using enums directly is safer and less error-prone than strings
+    public PlateContainer.BaseType baseTypeToSpawn; // Set in inspector if this spawns a base
+    public PlateContainer.SyrupType syrupTypeToSpawn; // Set in inspector if this spawns syrup
+    public PlateContainer.DecorType decorTypeToSpawn; // Set in inspector if this spawns decor
 
-    public enum CakeSlotState
+    public string partType; // Set this in inspector to "Base", "Syrup", or "Decor" to know what this spawner handles
+
+    private List<GameObject> spawnedParts = new List<GameObject>(); // Keep track of spawned visual parts
+
+    // Public method to be called when interaction happens (e.g., button click, player enters trigger)
+    public void AttemptToSpawnIngredient()
     {
-        Empty,
-        BaseOnly,
-        BaseWithSyrup,
-        BaseWithDecor,
-        BaseWithSyrupAndDecor
-    }
+        if (currentPlate == null)
+        {
+            Debug.LogWarning("No plate detected to spawn on.");
+            return;
+        }
 
-    public CakeSlotState currentState = CakeSlotState.Empty; //default state at start
+        bool ingredientAddedSuccessfully = false;
 
-    //Handle Logic of Cookie Assembly 
-    public void SpawnPrefab()
-    {
         switch (partType)
         {
             case "Base":
-                if (currentState == CakeSlotState.Empty)
-                {
-                    Spawn("Base");
-                    currentState = CakeSlotState.BaseOnly;
-                }
-                else
-                {
-                    Debug.Log("Can't place Base again!");
-                }
+                ingredientAddedSuccessfully = currentPlate.TryAddBase(baseTypeToSpawn);
                 break;
-
             case "Syrup":
-                if (currentState == CakeSlotState.BaseOnly)
-                {
-                    Spawn("Syrup");
-                    currentState = CakeSlotState.BaseWithSyrup;
-                }
-                else if (currentState == CakeSlotState.BaseWithDecor)
-                {
-                    Debug.Log("Can't place Syrup on top of Decor!");
-                }
-                else
-                {
-                    Debug.Log("Can't place Syrup yet!");
-                }
+                ingredientAddedSuccessfully = currentPlate.TryAddSyrup(syrupTypeToSpawn);
                 break;
-
             case "Decor":
-                if (currentState == CakeSlotState.BaseOnly)
-                {
-                    Spawn("Decor");
-                    currentState = CakeSlotState.BaseWithDecor;
-                }
-                else if (currentState == CakeSlotState.BaseWithSyrup)
-                {
-                    Spawn("Decor");
-                    currentState = CakeSlotState.BaseWithSyrupAndDecor;
-                }
-                else
-                {
-                    Debug.Log("Can't place Decor yet!");
-                }
+                ingredientAddedSuccessfully = currentPlate.TryAddDecor(decorTypeToSpawn);
                 break;
+            default:
+                Debug.LogError($"Unknown partType: {partType} on {gameObject.name}");
+                break;
+        }
+
+        if (ingredientAddedSuccessfully)
+        {
+            SpawnVisualPrefab();
+            Debug.Log($"{partType} {prefabObj.name} spawned on plate. New plate state: {currentPlate.CurrentState}");
+        }
+        else
+        {
+            Debug.Log($"Failed to add {partType} to plate. Plate state: {currentPlate.CurrentState}");
         }
     }
 
-    //this function actually instantiate the prefab 
-    private void Spawn(string type)
-    {
-        GameObject newPart = Instantiate(prefabObj, transform.position, Quaternion.identity);
-        newPart.tag = type; // Useful for checking later if needed
-        cookieParts.Add(newPart);
-        Debug.Log(type + " spawned.");
+    // This function actually instantiates the prefab
+    public void SpawnVisualPrefab()
+    { 
+        GameObject newPart = Instantiate(prefabObj, currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
+        newPart.name = $"{partType}_{prefabObj.name}"; // Name for clarity in hierarchy
+        spawnedParts.Add(newPart);
     }
 
-    public GameObject GetLastPart()
-    {
-        if (cookieParts.Count == 0) return null;
-        return cookieParts[cookieParts.Count - 1];
-    }
+    /*
 
+    // You might want a way to clear spawned visuals from this spawner
+    public void ClearSpawnedVisuals()
+    {
+        foreach (GameObject part in spawnedParts)
+        {
+            Destroy(part);
+        }
+        spawnedParts.Clear();
+    }
+    */ 
+
+    // --- Plate Detection (assuming your plate is a trigger) ---
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlateContainer plate = other.GetComponent<PlateContainer>();
         if (plate != null)
         {
             currentPlate = plate;
+            Debug.Log($"Plate {plate.name} entered spawner {gameObject.name}");
         }
     }
 
@@ -102,6 +91,7 @@ public class SpawnCookie : MonoBehaviour
     {
         if (other.GetComponent<PlateContainer>() == currentPlate)
         {
+            Debug.Log($"Plate {currentPlate.name} exited spawner {gameObject.name}");
             currentPlate = null;
         }
     }

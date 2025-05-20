@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 372328178}
   - component: {fileID: 372328177}
   m_Layer: 5
-  m_Name: CookieBaseButton
+  m_Name: BaseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1776444239}
         m_TargetAssemblyTypeName: SpawnCookie, Assembly-CSharp
-        m_MethodName: SpawnPrefab
+        m_MethodName: SpawnVisualPrefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 971803398}
   - component: {fileID: 971803397}
   - component: {fileID: 971803396}
+  - component: {fileID: 971803399}
   m_Layer: 0
   m_Name: DecorSpawner
   m_TagString: Decor
@@ -573,9 +574,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabObj: {fileID: 748676736721304044, guid: a4db06f3e70454f1ea755e0ba1914330, type: 3}
+  baseTypeToSpawn: 0
+  syrupTypeToSpawn: 0
+  decorTypeToSpawn: 0
   partType: Decor
-  cookieParts: []
-  currentState: 0
 --- !u!212 &971803397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -643,6 +645,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &971803399
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971803395}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &995609295
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 2048
 --- !u!1 &1020834705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,7 +1102,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 971803396}
         m_TargetAssemblyTypeName: SpawnCookie, Assembly-CSharp
-        m_MethodName: SpawnPrefab
+        m_MethodName: SpawnVisualPrefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1942,9 +1970,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabObj: {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
+  baseTypeToSpawn: 0
+  syrupTypeToSpawn: 0
+  decorTypeToSpawn: 0
   partType: Base
-  cookieParts: []
-  currentState: 0
 --- !u!61 &1776444240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2119,6 +2148,7 @@ GameObject:
   - component: {fileID: 1861046368}
   - component: {fileID: 1861046367}
   - component: {fileID: 1861046366}
+  - component: {fileID: 1861046369}
   m_Layer: 0
   m_Name: SyrupSpawner
   m_TagString: Syrup
@@ -2139,9 +2169,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabObj: {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
+  baseTypeToSpawn: 0
+  syrupTypeToSpawn: 0
+  decorTypeToSpawn: 0
   partType: Syrup
-  cookieParts: []
-  currentState: 0
 --- !u!212 &1861046367
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2209,6 +2240,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1861046369
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861046365}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1952144261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,7 +2279,7 @@ GameObject:
   - component: {fileID: 1952144264}
   - component: {fileID: 1952144263}
   m_Layer: 5
-  m_Name: 'CookieSyrupButton '
+  m_Name: 'SyrupButton '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2295,7 +2352,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1861046366}
         m_TargetAssemblyTypeName: SpawnCookie, Assembly-CSharp
-        m_MethodName: SpawnPrefab
+        m_MethodName: SpawnVisualPrefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
