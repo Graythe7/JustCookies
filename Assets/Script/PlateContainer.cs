@@ -28,6 +28,35 @@ public class PlateContainer : MonoBehaviour
         Three
     }
 
+    private string categoryName;
+   
+
+
+    //Passing the category name from counter 
+    public void CategoryData(string name)
+    {
+        categoryName = name;
+
+        switch (name)
+        {
+            case "Base":
+                Debug.Log("Added Base to Plate");
+                break;
+
+            case "Syrup":
+                Debug.Log("Added Syrup to Plate");
+                break;
+
+            case "Decor":
+                Debug.Log("Added Decor to Plate");
+                break;
+
+        }
+
+    }
+
+
+    /*
    
     [Header("Stored Ingredients")]
     [SerializeField] private BaseType baseType = BaseType.None;
@@ -39,6 +68,8 @@ public class PlateContainer : MonoBehaviour
     public SyrupType CurrentSyrupType => syrupType;
     public DecorType CurrentDecorType => decorType;
 
+
+    
 
     // --- Ingredient Adding Methods ---
     public bool TryAddBase(BaseType type)
@@ -82,5 +113,7 @@ public class PlateContainer : MonoBehaviour
         }
         return false;
     }
+
+    */
 
 }

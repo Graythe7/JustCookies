@@ -6,82 +6,45 @@ public class SpawnCookie : MonoBehaviour
 {
     private PlateContainer currentPlate; // The plate we are currently interacting with
 
-    public GameObject prefabObj; // The specific prefab for this spawner (e.g., BasePrefab, SyrupPrefab, DecorPrefab)
+    public GameObject[] ingredientType;
 
-    // Using enums directly is safer and less error-prone than strings
-    public PlateContainer.BaseType baseTypeToSpawn; // Set in inspector if this spawns a base
-    public PlateContainer.SyrupType syrupTypeToSpawn; // Set in inspector if this spawns syrup
-    public PlateContainer.DecorType decorTypeToSpawn; // Set in inspector if this spawns decor
+    private string counterCategory;
 
-    public string partType; // Set this in inspector to "Base", "Syrup", or "Decor" to know what this spawner handles
 
-    private List<GameObject> spawnedParts = new List<GameObject>(); // Keep track of spawned visual parts
-
-    // Public method to be called when interaction happens (e.g., button click, player enters trigger)
-    public void AttemptToSpawnIngredient()
+    private void Awake()
     {
-        if (currentPlate == null)
-        {
-            Debug.LogWarning("No plate detected to spawn on.");
-            return;
-        }
+        counterCategory = gameObject.tag;
+    }
 
-        bool ingredientAddedSuccessfully = false;
-
-        switch (partType)
+    //Adding data to plate: Category, Typee of ingredient 
+    public void AddDataToPlate()
+    {
+        if (currentPlate != null)
         {
-            case "Base":
-                ingredientAddedSuccessfully = currentPlate.TryAddBase(baseTypeToSpawn);
-                break;
-            case "Syrup":
-                ingredientAddedSuccessfully = currentPlate.TryAddSyrup(syrupTypeToSpawn);
-                break;
-            case "Decor":
-                ingredientAddedSuccessfully = currentPlate.TryAddDecor(decorTypeToSpawn);
-                break;
-            default:
-                Debug.LogError($"Unknown partType: {partType} on {gameObject.name}");
-                break;
-        }
-
-        if (ingredientAddedSuccessfully)
-        {
-            SpawnVisualPrefab();
-            Debug.Log($"{partType} {prefabObj.name} spawned on plate. New plate state: {currentPlate.CurrentState}");
-        }
-        else
-        {
-            Debug.Log($"Failed to add {partType} to plate. Plate state: {currentPlate.CurrentState}");
+            currentPlate.CategoryData(counterCategory);
         }
     }
 
-    // This function actually instantiates the prefab
-    public void SpawnVisualPrefab()
+    // Connect to Button to add visuals 
+    public void SpawnIngredient(int ingredientIndex)
     {
-        if (currentPlate == null)
+        if (currentPlate != null)
         {
-            Debug.LogWarning("No plate detected to spawn on.");
-            return;
+            // Check if the ingredientIndex is within the bounds of the array
+            if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length)
+            {
+                Instantiate(ingredientType[ingredientIndex], currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
+                AddDataToPlate();
+            }
+        }else if (currentPlate == null)
+        {
+            Debug.LogWarning("No plate detected to spawn ingredient on.");
         }
-        GameObject newPart = Instantiate(prefabObj, currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
-        newPart.name = $"{partType}_{prefabObj.name}"; // Name for clarity in hierarchy
-        spawnedParts.Add(newPart);
+
     }
 
-    /*
 
-    // You might want a way to clear spawned visuals from this spawner
-    public void ClearSpawnedVisuals()
-    {
-        foreach (GameObject part in spawnedParts)
-        {
-            Destroy(part);
-        }
-        spawnedParts.Clear();
-    }
-    */ 
-
-    // --- Plate Detection (assuming your plate is a trigger) ---
+    // Plate Detection 
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlateContainer plate = other.GetComponent<PlateContainer>();

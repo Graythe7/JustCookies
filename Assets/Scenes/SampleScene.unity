@@ -276,8 +276,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1776444239}
         m_TargetAssemblyTypeName: SpawnCookie, Assembly-CSharp
-        m_MethodName: SpawnVisualPrefab
-        m_Mode: 1
+        m_MethodName: SpawnIngredient
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -573,11 +573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabObj: {fileID: 748676736721304044, guid: a4db06f3e70454f1ea755e0ba1914330, type: 3}
-  baseTypeToSpawn: 0
-  syrupTypeToSpawn: 0
-  decorTypeToSpawn: 0
-  partType: Decor
+  ingredientType:
+  - {fileID: 748676736721304044, guid: a4db06f3e70454f1ea755e0ba1914330, type: 3}
+  - {fileID: 2889130537339988271, guid: 5617564fc800840d5a630f97b4d58ab4, type: 3}
+  - {fileID: 5284509124433618660, guid: 7db969cd747814cacab734dd46f4dd70, type: 3}
 --- !u!212 &971803397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1969,11 +1968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabObj: {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
-  baseTypeToSpawn: 0
-  syrupTypeToSpawn: 0
-  decorTypeToSpawn: 0
-  partType: Base
+  ingredientType:
+  - {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
+  - {fileID: 7774886101586662895, guid: 82d728c63e14740d5a18d3cd786f912e, type: 3}
+  - {fileID: 979383566385888613, guid: 29a990643bedd432d87506f38b5afac8, type: 3}
 --- !u!61 &1776444240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2168,11 +2166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabObj: {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
-  baseTypeToSpawn: 0
-  syrupTypeToSpawn: 0
-  decorTypeToSpawn: 0
-  partType: Syrup
+  ingredientType:
+  - {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
+  - {fileID: 1793739093905920685, guid: d5fcf74cca3904031a7a52a62e2aa88e, type: 3}
+  - {fileID: 6110171700160290324, guid: f2332815cd56b4a6bb64ffe3565a144e, type: 3}
 --- !u!212 &1861046367
 SpriteRenderer:
   m_ObjectHideFlags: 0
