@@ -57,7 +57,12 @@ public class SpawnCookie : MonoBehaviour
 
     // This function actually instantiates the prefab
     public void SpawnVisualPrefab()
-    { 
+    {
+        if (currentPlate == null)
+        {
+            Debug.LogWarning("No plate detected to spawn on.");
+            return;
+        }
         GameObject newPart = Instantiate(prefabObj, currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
         newPart.name = $"{partType}_{prefabObj.name}"; // Name for clarity in hierarchy
         spawnedParts.Add(newPart);
@@ -89,10 +94,14 @@ public class SpawnCookie : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlateContainer>() == currentPlate)
+        if (currentPlate != null)
         {
-            Debug.Log($"Plate {currentPlate.name} exited spawner {gameObject.name}");
-            currentPlate = null;
+            if (other.gameObject == currentPlate.gameObject)
+            {
+                Debug.Log($"Plate {currentPlate.name} exited spawner {gameObject.name}");
+                currentPlate = null; // Clear the reference only if it's the actual plate leaving
+            }
         }
+       
     }
 }

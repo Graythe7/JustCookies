@@ -28,15 +28,7 @@ public class PlateContainer : MonoBehaviour
         Three
     }
 
-    public enum CakeSlotState //all different states each cookie could have
-    {
-        Empty,
-        BaseOnly,
-        BaseWithSyrup,
-        BaseWithDecor,
-        BaseWithSyrupAndDecor
-    }
-
+   
     [Header("Stored Ingredients")]
     [SerializeField] private BaseType baseType = BaseType.None;
     [SerializeField] private SyrupType syrupType = SyrupType.None;
@@ -47,8 +39,6 @@ public class PlateContainer : MonoBehaviour
     public SyrupType CurrentSyrupType => syrupType;
     public DecorType CurrentDecorType => decorType;
 
-    // Use a public getter for the current state
-    public CakeSlotState CurrentState { get; private set; } = CakeSlotState.Empty;
 
     // --- Ingredient Adding Methods ---
     public bool TryAddBase(BaseType type)
@@ -56,7 +46,7 @@ public class PlateContainer : MonoBehaviour
         if (baseType == BaseType.None)
         {
             baseType = type;
-            UpdateCakeSlotState(); // Update state after adding
+            Debug.Log($"Added Base: {type}");
             return true;
         }
         Debug.Log("Base already present.");
@@ -65,15 +55,11 @@ public class PlateContainer : MonoBehaviour
 
     public bool TryAddSyrup(SyrupType type)
     {
-        if (baseType != BaseType.None && syrupType == SyrupType.None) // Syrup needs a base
+        if (syrupType == SyrupType.None)
         {
             syrupType = type;
-            UpdateCakeSlotState(); // Update state after adding
+            Debug.Log($"Added Syrup: {type}");
             return true;
-        }
-        else if (baseType == BaseType.None)
-        {
-            Debug.Log("Cannot add syrup without a base.");
         }
         else if (syrupType != SyrupType.None)
         {
@@ -84,15 +70,11 @@ public class PlateContainer : MonoBehaviour
 
     public bool TryAddDecor(DecorType type)
     {
-        if (baseType != BaseType.None && decorType == DecorType.None) // Decor needs a base
+        if (decorType == DecorType.None) // Decor needs a base
         {
             decorType = type;
-            UpdateCakeSlotState(); // Update state after adding
+            Debug.Log($"Added Decor: {type}");
             return true;
-        }
-        else if (baseType == BaseType.None)
-        {
-            Debug.Log("Cannot add decor without a base.");
         }
         else if (decorType != DecorType.None)
         {
@@ -101,49 +83,4 @@ public class PlateContainer : MonoBehaviour
         return false;
     }
 
-    // --- State Update Logic ---
-    private void UpdateCakeSlotState()
-    {
-        if (baseType != BaseType.None)
-        {
-            if (syrupType != SyrupType.None && decorType != DecorType.None)
-            {
-                CurrentState = CakeSlotState.BaseWithSyrupAndDecor;
-            }
-            else if (syrupType != SyrupType.None)
-            {
-                CurrentState = CakeSlotState.BaseWithSyrup;
-            }
-            else if (decorType != DecorType.None)
-            {
-                CurrentState = CakeSlotState.BaseWithDecor;
-            }
-            else
-            {
-                CurrentState = CakeSlotState.BaseOnly;
-            }
-        }
-        else
-        {
-            CurrentState = CakeSlotState.Empty;
-        }
-
-        Debug.Log($"Plate State Updated to: {CurrentState}");
-    }
-
-    // Call UpdateCakeSlotState initially to set the correct state if ingredients are serialized
-    private void Awake()
-    {
-        UpdateCakeSlotState();
-    }
-
-    // You might want a way to reset the plate for a new order
-    public void ResetPlate()
-    {
-        baseType = BaseType.None;
-        syrupType = SyrupType.None;
-        decorType = DecorType.None;
-        UpdateCakeSlotState();
-        // You might also want to destroy spawned prefabs here
-    }
 }
