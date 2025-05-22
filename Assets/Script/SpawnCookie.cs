@@ -27,14 +27,17 @@ public class SpawnCookie : MonoBehaviour
             {
                 Instantiate(ingredientType[ingredientIndex], currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
                 //Mark the category as added on the current plate
-                currentPlate.MarkCategoryAsAdded(counterCategory);
+                currentPlate.MarkCategoryAsAdded(counterCategory, ingredientIndex);
             }
-        }else if (currentPlate == null)
+            else if (currentPlate.HasCategoryBeenAdded(counterCategory))
+            {
+                Debug.LogWarning("Ingredient Already added to plate.");
+            }
+
+        }
+        else if (currentPlate == null)
         {
             Debug.LogWarning("No plate detected to spawn ingredient on.");
-        }else if (currentPlate.HasCategoryBeenAdded(counterCategory))
-        {
-            Debug.LogWarning("Ingredient Already added to plate.");
         }
 
     }
@@ -56,7 +59,7 @@ public class SpawnCookie : MonoBehaviour
         {
             if (other.gameObject == currentPlate.gameObject)
             {
-                Debug.Log($"Plate {currentPlate.name} exited spawner {gameObject.name}");
+                Debug.Log($"Plate exited spawner");
             }
         }
        

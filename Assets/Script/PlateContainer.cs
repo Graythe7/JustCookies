@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlateContainer : MonoBehaviour
 {
+    /*
     public enum BaseType
     {
         None,
@@ -27,11 +28,17 @@ public class PlateContainer : MonoBehaviour
         Two,
         Three
     }
+    */
 
-    private string categoryName;
+    // Flags to track if a category has been added
     private bool isBaseAdded = false;
     private bool isSyrupAdded = false;
     private bool isDecorAdded = false;
+
+    // Variables to store the SPECIFIC index of the ingredient added for each category
+    private int baseTypeIndex = -1;
+    private int syrupTypeIndex = -1;
+    private int decorTypeIndex = -1;
 
     //Pass to SpawnCookie to whether spawn ingredient or now/ prevent duplication
     public bool HasCategoryBeenAdded(string category)
@@ -51,7 +58,7 @@ public class PlateContainer : MonoBehaviour
     }
 
     //Get the category name from counter (spawnCookie) to update plate's data 
-    public bool MarkCategoryAsAdded(string category)
+    public bool MarkCategoryAsAdded(string category, int ingredientIndex)
     {
         switch (category)
         {
@@ -59,6 +66,7 @@ public class PlateContainer : MonoBehaviour
                 if (!isBaseAdded)
                 {
                     isBaseAdded = true;
+                    baseTypeIndex = ingredientIndex;
                     Debug.Log($"Base category marked as added on plate: {gameObject.name}");
                     return true;
                 }
@@ -68,6 +76,7 @@ public class PlateContainer : MonoBehaviour
                 if (!isSyrupAdded)
                 {
                     isSyrupAdded = true;
+                    syrupTypeIndex = ingredientIndex;
                     Debug.Log($"Syrup category marked as added on plate: {gameObject.name}");
                     return true;
                 }
@@ -77,6 +86,7 @@ public class PlateContainer : MonoBehaviour
                 if (!isDecorAdded)
                 {
                     isDecorAdded = true;
+                    decorTypeIndex = ingredientIndex;
                     Debug.Log($"Decor category marked as added on plate: {gameObject.name}");
                     return true;
                 }
@@ -89,64 +99,11 @@ public class PlateContainer : MonoBehaviour
     }
 
 
-    /*
-   
-    [Header("Stored Ingredients")]
-    [SerializeField] private BaseType baseType = BaseType.None;
-    [SerializeField] private SyrupType syrupType = SyrupType.None;
-    [SerializeField] private DecorType decorType = DecorType.None;
-
-    // Public properties to get the current types
-    public BaseType CurrentBaseType => baseType;
-    public SyrupType CurrentSyrupType => syrupType;
-    public DecorType CurrentDecorType => decorType;
-
-
-    
-
-    // --- Ingredient Adding Methods ---
-    public bool TryAddBase(BaseType type)
+    public void ShowFinalOrder()
     {
-        if (baseType == BaseType.None)
-        {
-            baseType = type;
-            Debug.Log($"Added Base: {type}");
-            return true;
-        }
-        Debug.Log("Base already present.");
-        return false;
+        Debug.Log("Base added:" + isBaseAdded + "type of Base:" + baseTypeIndex);
+        Debug.Log("Syrup added:" + isSyrupAdded + "type of Syrup:" + syrupTypeIndex);
+        Debug.Log("Decor added:" + isDecorAdded + "type of Decor:" + decorTypeIndex);
     }
-
-    public bool TryAddSyrup(SyrupType type)
-    {
-        if (syrupType == SyrupType.None)
-        {
-            syrupType = type;
-            Debug.Log($"Added Syrup: {type}");
-            return true;
-        }
-        else if (syrupType != SyrupType.None)
-        {
-            Debug.Log("Syrup already present.");
-        }
-        return false;
-    }
-
-    public bool TryAddDecor(DecorType type)
-    {
-        if (decorType == DecorType.None) // Decor needs a base
-        {
-            decorType = type;
-            Debug.Log($"Added Decor: {type}");
-            return true;
-        }
-        else if (decorType != DecorType.None)
-        {
-            Debug.Log("Decor already present.");
-        }
-        return false;
-    }
-
-    */
 
 }
