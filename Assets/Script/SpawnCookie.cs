@@ -16,14 +16,6 @@ public class SpawnCookie : MonoBehaviour
         counterCategory = gameObject.tag;
     }
 
-    //Adding data to plate: Category, Typee of ingredient 
-    public void AddDataToPlate()
-    {
-        if (currentPlate != null)
-        {
-            currentPlate.CategoryData(counterCategory);
-        }
-    }
 
     // Connect to Button to add visuals 
     public void SpawnIngredient(int ingredientIndex)
@@ -31,14 +23,18 @@ public class SpawnCookie : MonoBehaviour
         if (currentPlate != null)
         {
             // Check if the ingredientIndex is within the bounds of the array
-            if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length)
+            if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length && !currentPlate.HasCategoryBeenAdded(counterCategory))
             {
                 Instantiate(ingredientType[ingredientIndex], currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
-                AddDataToPlate();
+                //Mark the category as added on the current plate
+                currentPlate.MarkCategoryAsAdded(counterCategory);
             }
         }else if (currentPlate == null)
         {
             Debug.LogWarning("No plate detected to spawn ingredient on.");
+        }else if (currentPlate.HasCategoryBeenAdded(counterCategory))
+        {
+            Debug.LogWarning("Ingredient Already added to plate.");
         }
 
     }
@@ -51,7 +47,6 @@ public class SpawnCookie : MonoBehaviour
         if (plate != null)
         {
             currentPlate = plate;
-            Debug.Log($"Plate {plate.name} entered spawner {gameObject.name}");
         }
     }
 
@@ -62,7 +57,6 @@ public class SpawnCookie : MonoBehaviour
             if (other.gameObject == currentPlate.gameObject)
             {
                 Debug.Log($"Plate {currentPlate.name} exited spawner {gameObject.name}");
-                currentPlate = null; // Clear the reference only if it's the actual plate leaving
             }
         }
        

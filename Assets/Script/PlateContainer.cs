@@ -29,30 +29,63 @@ public class PlateContainer : MonoBehaviour
     }
 
     private string categoryName;
-   
+    private bool isBaseAdded = false;
+    private bool isSyrupAdded = false;
+    private bool isDecorAdded = false;
 
-
-    //Passing the category name from counter 
-    public void CategoryData(string name)
+    //Pass to SpawnCookie to whether spawn ingredient or now/ prevent duplication
+    public bool HasCategoryBeenAdded(string category)
     {
-        categoryName = name;
-
-        switch (name)
+        switch (category)
         {
             case "Base":
-                Debug.Log("Added Base to Plate");
-                break;
-
+                return isBaseAdded;
             case "Syrup":
-                Debug.Log("Added Syrup to Plate");
-                break;
-
+                return isSyrupAdded;
             case "Decor":
-                Debug.Log("Added Decor to Plate");
-                break;
-
+                return isDecorAdded;
+            default:
+                Debug.LogWarning($"Unknown category '{category}' queried for plate {gameObject.name}.");
+                return false; 
         }
+    }
 
+    //Get the category name from counter (spawnCookie) to update plate's data 
+    public bool MarkCategoryAsAdded(string category)
+    {
+        switch (category)
+        {
+            case "Base":
+                if (!isBaseAdded)
+                {
+                    isBaseAdded = true;
+                    Debug.Log($"Base category marked as added on plate: {gameObject.name}");
+                    return true;
+                }
+                Debug.LogWarning($"Base category already marked as added on plate: {gameObject.name}");
+                return false;
+            case "Syrup":
+                if (!isSyrupAdded)
+                {
+                    isSyrupAdded = true;
+                    Debug.Log($"Syrup category marked as added on plate: {gameObject.name}");
+                    return true;
+                }
+                Debug.LogWarning($"Syrup category already marked as added on plate: {gameObject.name}");
+                return false;
+            case "Decor":
+                if (!isDecorAdded)
+                {
+                    isDecorAdded = true;
+                    Debug.Log($"Decor category marked as added on plate: {gameObject.name}");
+                    return true;
+                }
+                Debug.LogWarning($"Decor category already marked as added on plate: {gameObject.name}");
+                return false;
+            default:
+                Debug.LogWarning($"Unknown category '{category}' attempted to be marked on plate {gameObject.name}.");
+                return false;
+        }
     }
 
 
