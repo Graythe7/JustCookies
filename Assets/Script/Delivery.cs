@@ -5,7 +5,6 @@ using UnityEngine;
 public class Delivery : MonoBehaviour
 {
     public GameObject deliveryBoxPrefab;
-    private PlateContainer currentPlate;
     private float speed = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -16,13 +15,6 @@ public class Delivery : MonoBehaviour
         if(newBox != null)
         {
             StartCoroutine(MoveBox(newBox));
-        }
-
-        PlateContainer plate = other.GetComponent<PlateContainer>();
-        if (plate != null)
-        {
-            currentPlate = plate;
-            plate.ShowFinalOrder();
         }
 
     }
