@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OrderScreen : MonoBehaviour
 {
-    private PlateContainer currentPlate;
 
     public GameObject[] BaseType;
     public GameObject[] SyrupType;
@@ -17,7 +16,7 @@ public class OrderScreen : MonoBehaviour
 
     private void Start()
     {
-        CreateRandomOrder();
+        //CreateRandomOrder();
     }
 
     public void CreateRandomOrder()
