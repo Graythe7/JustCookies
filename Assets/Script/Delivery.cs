@@ -6,18 +6,13 @@ public class Delivery : MonoBehaviour
 {
     public GameObject deliveryBoxPrefab;
     public OrderScreen newOrderScreen;
+    public Transform trashSpot;
 
     private float speed = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject newBox = Instantiate(deliveryBoxPrefab, transform.position, Quaternion.identity);
-
-        if(newBox != null)
-        {
-            StartCoroutine(MoveBox(newBox));
-        }
-
+        
         //When plate enters the zone, compare plateOrder and screenOrder
         PlateContainer plate = other.GetComponent<PlateContainer>();
         if (plate != null)
@@ -30,16 +25,30 @@ public class Delivery : MonoBehaviour
             if (isMatch)
             {
                 Debug.Log("Correct Order Delivered!");
+                Destroy(other.gameObject);
+
+                //Since the Order is correct, a new Box appears and sends out 
+                GameObject newBox = Instantiate(deliveryBoxPrefab, transform.position, Quaternion.identity);
+
+                if (newBox != null)
+                {
+                    StartCoroutine(MoveBox(newBox));
+                }
+
                 newOrderScreen.CreateRandomOrder(); //create new order
             }
             else
             {
                 //Try again on the previous order till you get it right
                 Debug.Log("Wrong Order!");
+
+                //The Old order gotta go to trash
+                other.transform.position = trashSpot.transform.position;
+                Destroy(other.gameObject, 1f);
             }
         }
 
-        Destroy(other.gameObject);
+        //Destroy(other.gameObject);
     }
 
     private IEnumerator MoveBox(GameObject Box)
