@@ -24,15 +24,18 @@ public class Delivery : MonoBehaviour
         {
             bool isMatch = GameManager.Instance.MatchOrder(plate);
 
+            //create a new plate in either scenarios
+            GameManager.Instance.SpawnNewPlate();
+
             if (isMatch)
             {
                 Debug.Log("Correct Order Delivered!");
-                // You could add score, spawn a new plate, etc.
+                newOrderScreen.CreateRandomOrder(); //create new order
             }
             else
             {
+                //Try again on the previous order till you get it right
                 Debug.Log("Wrong Order!");
-                // Optional: penalty or reject animation
             }
         }
 

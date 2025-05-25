@@ -5,9 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public OrderScreen orderScreen;
-    [SerializeField] private Delivery deliveyZone;
-
     public Transform plateSpawnSpot;
+    public GameObject platePrefab;
 
     public static GameManager Instance; // Singleton
     private void Awake()
@@ -25,9 +24,9 @@ public class GameManager : MonoBehaviour
         orderScreen.CreateRandomOrder();
     }
 
-    private void SpawnNewPlate()
+    public void SpawnNewPlate()
     {
-        //based on the Fail/Accepeted Order -> spawn new plate 
+        Instantiate(platePrefab, plateSpawnSpot.transform.position, Quaternion.identity);
     }
 
     public bool MatchOrder(PlateContainer plate)
