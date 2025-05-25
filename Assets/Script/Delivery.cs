@@ -5,7 +5,7 @@ using UnityEngine;
 public class Delivery : MonoBehaviour
 {
     public GameObject deliveryBoxPrefab;
-    private OrderScreen newOrderScreen;
+    public OrderScreen newOrderScreen;
 
     private float speed = 1f;
 
@@ -18,11 +18,22 @@ public class Delivery : MonoBehaviour
             StartCoroutine(MoveBox(newBox));
         }
 
-
+        //When plate enters the zone, compare plateOrder and screenOrder
         PlateContainer plate = other.GetComponent<PlateContainer>();
         if (plate != null)
         {
-            plate.ShowFinalOrder();
+            bool isMatch = GameManager.Instance.MatchOrder(plate);
+
+            if (isMatch)
+            {
+                Debug.Log("Correct Order Delivered!");
+                // You could add score, spawn a new plate, etc.
+            }
+            else
+            {
+                Debug.Log("Wrong Order!");
+                // Optional: penalty or reject animation
+            }
         }
 
         Destroy(other.gameObject);
@@ -45,4 +56,5 @@ public class Delivery : MonoBehaviour
             yield return null;
         }
     }
+
 }

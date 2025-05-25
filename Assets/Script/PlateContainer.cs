@@ -4,31 +4,6 @@ using UnityEngine;
 
 public class PlateContainer : MonoBehaviour
 {
-    /*
-    public enum BaseType
-    {
-        None,
-        One,
-        Two,
-        Three
-    }
-
-    public enum SyrupType
-    {
-        None,
-        One,
-        Two,
-        Three
-    }
-
-    public enum DecorType
-    {
-        None,
-        One,
-        Two,
-        Three
-    }
-    */
 
     // Flags to track if a category has been added
     private bool isBaseAdded = false;
@@ -104,6 +79,15 @@ public class PlateContainer : MonoBehaviour
         Debug.Log("Base added:" + isBaseAdded + "type of Base:" + baseTypeIndex);
         Debug.Log("Syrup added:" + isSyrupAdded + "type of Syrup:" + syrupTypeIndex);
         Debug.Log("Decor added:" + isDecorAdded + "type of Decor:" + decorTypeIndex);
+    }
+
+    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate()
+    {
+        int baseIndex = baseTypeIndex;   
+        int syrupIndex = syrupTypeIndex;
+        int decorIndex = decorTypeIndex;
+
+        return (baseIndex, syrupIndex, decorIndex);
     }
 
 }

@@ -14,11 +14,6 @@ public class OrderScreen : MonoBehaviour
     private int DecorIndexRandom;
 
 
-    private void Start()
-    {
-        //CreateRandomOrder();
-    }
-
     public void CreateRandomOrder()
     {
         BaseIndexRandom = Random.Range(0, BaseType.Length);
@@ -29,4 +24,15 @@ public class OrderScreen : MonoBehaviour
         Instantiate(SyrupType[SyrupIndexRandom], transform.position, Quaternion.identity);
         Instantiate(DecorType[DecorIndexRandom], transform.position, Quaternion.identity);
     }
+
+    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnScreen()
+    {
+        int baseIndex = BaseIndexRandom;
+        int syrupIndex = SyrupIndexRandom;
+        int decorIndex = DecorIndexRandom;
+
+        return (baseIndex, syrupIndex, decorIndex);
+    }
+
+
 }
