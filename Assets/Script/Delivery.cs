@@ -5,18 +5,29 @@ using UnityEngine;
 public class Delivery : MonoBehaviour
 {
     public GameObject deliveryBoxPrefab;
+    private OrderScreen newOrderScreen;
     private float speed = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameObject newBox = Instantiate(deliveryBoxPrefab, transform.position, Quaternion.identity);
-        Destroy(other.gameObject);
 
         if(newBox != null)
         {
             StartCoroutine(MoveBox(newBox));
         }
 
+
+        PlateContainer plate = other.GetComponent<PlateContainer>();
+        if (plate != null)
+        {
+            plate.ShowFinalOrder();
+        }
+
+        Destroy(other.gameObject);
+
+        //if the order accepts, new order appears in screen
+        //newOrderScreen.CreateRandomOrder();
     }
 
     private IEnumerator MoveBox(GameObject Box)

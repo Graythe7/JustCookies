@@ -20,23 +20,14 @@ public class OrderScreen : MonoBehaviour
         CreateRandomOrder();
     }
 
-    private void CreateRandomOrder()
+    public void CreateRandomOrder()
     {
         BaseIndexRandom = Random.Range(0, BaseType.Length);
         SyrupIndexRandom = Random.Range(0, SyrupType.Length);
         DecorIndexRandom = Random.Range(0, DecorType.Length);
 
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-
-        PlateContainer plate = other.GetComponent<PlateContainer>();
-        if (plate != null)
-        {
-            currentPlate = plate;
-            plate.ShowFinalOrder();
-        }
+        Instantiate(BaseType[BaseIndexRandom], transform.position, Quaternion.identity);
+        Instantiate(SyrupType[SyrupIndexRandom], transform.position, Quaternion.identity);
+        Instantiate(DecorType[DecorIndexRandom], transform.position, Quaternion.identity);
     }
 }
