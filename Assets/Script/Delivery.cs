@@ -6,6 +6,7 @@ public class Delivery : MonoBehaviour
 {
     public GameObject deliveryBoxPrefab;
     private OrderScreen newOrderScreen;
+
     private float speed = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -25,9 +26,6 @@ public class Delivery : MonoBehaviour
         }
 
         Destroy(other.gameObject);
-
-        //if the order accepts, new order appears in screen
-        //newOrderScreen.CreateRandomOrder();
     }
 
     private IEnumerator MoveBox(GameObject Box)
