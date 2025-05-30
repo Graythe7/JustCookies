@@ -17,7 +17,7 @@ public class OrderScreen : MonoBehaviour
 
     public void CreateRandomOrder()
     {
-        // Clear previous visuals if any
+        // Clear previous visuals
         ClearVisuals();
 
         BaseIndexRandom = Random.Range(0, BaseType.Length);

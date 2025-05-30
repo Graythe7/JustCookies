@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // When game starts -> need order and new plate ready 
         orderScreen.CreateRandomOrder();
+        SpawnNewPlate();
     }
 
     public void SpawnNewPlate()
