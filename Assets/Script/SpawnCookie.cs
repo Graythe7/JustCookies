@@ -26,6 +26,12 @@ public class SpawnCookie : MonoBehaviour
             if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length && !currentPlate.HasCategoryBeenAdded(counterCategory))
             {
                 Instantiate(ingredientType[ingredientIndex], currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
+
+                /*
+                GameObject ingredient = Instantiate(ingredientType[ingredientIndex], currentPlate.transform.position, Quaternion.identity, currentPlate.transform);
+                ingredient.transform.SetParent(currentPlate.transform, true);
+                */
+
                 //Mark the category as added on the current plate
                 currentPlate.MarkCategoryAsAdded(counterCategory, ingredientIndex);
             }
