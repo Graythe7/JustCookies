@@ -24,9 +24,10 @@ public class OrderScreen : MonoBehaviour
         SyrupIndexRandom = Random.Range(0, SyrupType.Length);
         DecorIndexRandom = Random.Range(0, DecorType.Length);
 
-        currentVisuals.Add(Instantiate(BaseType[BaseIndexRandom], transform.position, Quaternion.identity, transform));
-        currentVisuals.Add(Instantiate(SyrupType[SyrupIndexRandom], transform.position, Quaternion.identity, transform));
-        currentVisuals.Add(Instantiate(DecorType[DecorIndexRandom], transform.position, Quaternion.identity, transform));
+        // Instantiate and add to visuals
+        AddToVisuals(BaseType[BaseIndexRandom]);
+        AddToVisuals(SyrupType[SyrupIndexRandom]);
+        AddToVisuals(DecorType[DecorIndexRandom]);
     }
 
     public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnScreen()
@@ -34,6 +35,12 @@ public class OrderScreen : MonoBehaviour
         return (BaseIndexRandom, SyrupIndexRandom, DecorIndexRandom);
     }
 
+    private void AddToVisuals(GameObject prefab)
+    {
+        GameObject newIngredient = Instantiate(prefab, transform.position, Quaternion.identity, transform);
+        newIngredient.transform.localScale *= 3f;
+        currentVisuals.Add(newIngredient);
+    }
 
     private void ClearVisuals()
     {
@@ -44,5 +51,6 @@ public class OrderScreen : MonoBehaviour
         }
         currentVisuals.Clear();
     }
+
 
 }
