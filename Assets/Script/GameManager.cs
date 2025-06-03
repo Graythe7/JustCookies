@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public OrderScreen orderScreen;
     public Transform plateSpawnSpot;
+    public Transform plateInitialPoint;
     public GameObject platePrefab;
 
     public static GameManager Instance; // Singleton
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnNewPlate()
     {
-        Instantiate(platePrefab, plateSpawnSpot.transform.position, Quaternion.identity);
+        GameObject newPlate = Instantiate(platePrefab, plateSpawnSpot.position, Quaternion.identity);
+        StartCoroutine(PlateInitialMovement(newPlate, plateInitialPoint.position, 1f)); 
     }
 
     public bool MatchOrder(PlateContainer plate)
@@ -51,6 +53,22 @@ public class GameManager : MonoBehaviour
 
         Debug.LogWarning("Plate or OrderScreen reference missing.");
         return false;
+    }
+
+    private IEnumerator PlateInitialMovement(GameObject plate, Vector3 targetPos, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 startPos = plate.transform.position;
+
+        while (elapsed < duration)
+        {
+            if (plate == null) yield break;
+            plate.transform.position = Vector3.Lerp(startPos, targetPos, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        plate.transform.position = targetPos;
+        plate.transform.position += new Vector3(1f, 0f, 0f);
     }
 
 }

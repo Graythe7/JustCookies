@@ -7,8 +7,8 @@ public class Delivery : MonoBehaviour
     public GameObject deliveryBoxPrefab;
     public OrderScreen newOrderScreen;
     public Transform trashSpot;
+    public Transform boxDeliveryEnd;
 
-    private float speed = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -32,7 +32,7 @@ public class Delivery : MonoBehaviour
 
                 if (newBox != null)
                 {
-                    StartCoroutine(MoveBox(newBox));
+                    StartCoroutine(MoveBox(newBox, boxDeliveryEnd.transform.position, 2f));
                 }
 
                 newOrderScreen.CreateRandomOrder(); //create new order
@@ -50,23 +50,27 @@ public class Delivery : MonoBehaviour
         //Destroy(other.gameObject);
     }
 
-    private IEnumerator MoveBox(GameObject Box)
+    private IEnumerator MoveBox(GameObject box, Vector3 targetPos, float duration)
     {
-        while (Box.transform.position.y <= 8 && Box != null)
+        if (box == null) yield break;
+
+        Vector3 startPos = box.transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
         {
-            if(Box.transform.position.y >= 6)
-            {
-                Destroy(Box.gameObject);
-                break;
-            }
-            else
-            {
-                Box.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
-            }
-    
+            box.transform.position = Vector3.Lerp(startPos, targetPos, elapsed / duration);
+            elapsed += Time.deltaTime;
             yield return null;
         }
-    }
+
+        if(box != null)
+        {
+            box.transform.position = targetPos;
+            Destroy(box);
+        }
+
+    } 
 
     private IEnumerator MoveToTrash(Transform item, Vector3 targetPos, float duration)
     {
