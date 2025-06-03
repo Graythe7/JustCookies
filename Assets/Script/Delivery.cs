@@ -43,8 +43,7 @@ public class Delivery : MonoBehaviour
                 Debug.Log("Wrong Order!");
 
                 //The Old order gotta go to trash
-                other.transform.position = trashSpot.transform.position;
-                Destroy(other.gameObject, 1f);
+                StartCoroutine(MoveToTrash(other.transform, trashSpot.transform.position, 1f));
             }
         }
 
@@ -68,5 +67,22 @@ public class Delivery : MonoBehaviour
             yield return null;
         }
     }
+
+    private IEnumerator MoveToTrash(Transform item, Vector3 targetPos, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 startPos = item.position;
+
+        while (elapsed < duration)
+        {
+            item.position = Vector3.Lerp(startPos, targetPos, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        item.position = targetPos;
+        Destroy(item.gameObject);
+    }
+
 
 }
