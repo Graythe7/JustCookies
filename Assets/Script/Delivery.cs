@@ -8,6 +8,7 @@ public class Delivery : MonoBehaviour
     public OrderScreen newOrderScreen;
     public Transform trashSpot;
     public Transform boxDeliveryEnd;
+    public Transform newBoxSpawnPos;
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +29,7 @@ public class Delivery : MonoBehaviour
                 Destroy(other.gameObject);
 
                 //Since the Order is correct, a new Box appears and sends out 
-                GameObject newBox = Instantiate(deliveryBoxPrefab, transform.position, Quaternion.identity);
+                GameObject newBox = Instantiate(deliveryBoxPrefab, newBoxSpawnPos.transform.position, Quaternion.identity);
 
                 if (newBox != null)
                 {
@@ -76,15 +77,20 @@ public class Delivery : MonoBehaviour
     {
         float elapsed = 0f;
         Vector3 startPos = item.position;
+        Vector3 startScale = item.localScale;
+        Vector3 targetScale = Vector3.zero;
 
         while (elapsed < duration)
         {
             item.position = Vector3.Lerp(startPos, targetPos, elapsed / duration);
+            item.localScale = Vector3.Lerp(startScale, targetScale, elapsed / duration);
+
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         item.position = targetPos;
+        item.localScale = targetScale;
         Destroy(item.gameObject);
     }
 

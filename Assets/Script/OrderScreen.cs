@@ -38,7 +38,7 @@ public class OrderScreen : MonoBehaviour
     private void AddToVisuals(GameObject prefab)
     {
         GameObject newIngredient = Instantiate(prefab, transform.position, Quaternion.identity);
-        newIngredient.transform.localScale *= 3f;
+        newIngredient.transform.localScale *= 2f;
         currentVisuals.Add(newIngredient);
     }
 

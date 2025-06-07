@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,7 +67,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         plate.transform.position = targetPos;
-        plate.transform.position += new Vector3(1f, 0f, 0f);
+        plate.transform.position += new Vector3(1.5f, 0f, 0f);
     }
 
 }
