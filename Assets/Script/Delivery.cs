@@ -10,6 +10,18 @@ public class Delivery : MonoBehaviour
     public Transform boxDeliveryEnd;
     public Transform newBoxSpawnPos;
 
+    //Sprites for DeliveryScreen 
+    public Sprite emptyLineIcon;
+    public Sprite successIcon;
+    public Sprite failIcon;
+    public SpriteRenderer[] currIcons; //access the current icon we are updating 
+    private int iconIndexCounter = 0; //to keep track of orders 
+
+    private void Start()
+    {
+        iconIndexCounter = 0;
+
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,6 +31,9 @@ public class Delivery : MonoBehaviour
         if (plate != null)
         {
             bool isMatch = GameManager.Instance.MatchOrder(plate);
+
+            //Update the icon on deliveryScreen seperately
+            UpdateDeliveryScreen(iconIndexCounter, isMatch);
 
             //create a new plate in either scenarios
             GameManager.Instance.SpawnNewPlate();
@@ -46,6 +61,9 @@ public class Delivery : MonoBehaviour
                 //The Old order gotta go to trash
                 StartCoroutine(MoveToTrash(other.transform, trashSpot.transform.position, 1f));
             }
+
+            //move to next order in DeliveryScreen
+            iconIndexCounter++; 
         }
 
         //Destroy(other.gameObject);
@@ -94,5 +112,27 @@ public class Delivery : MonoBehaviour
         Destroy(item.gameObject);
     }
 
+
+    private void UpdateDeliveryScreen(int index, bool isMatched)
+    {
+        if(index < 0 || index >= currIcons.Length)
+        {
+            Debug.Log("index passed is not bounded, maybe round finished?");
+            return; // don't run the rest of the code
+        }
+
+        if (isMatched)
+        {
+            currIcons[index].sprite = successIcon;
+            currIcons[index].transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+
+        }
+
+        else if (!isMatched)
+        {
+            currIcons[index].sprite = failIcon;
+            currIcons[index].transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+        }
+    }
 
 }

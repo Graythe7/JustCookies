@@ -70,4 +70,6 @@ public class GameManager : MonoBehaviour
         plate.transform.position += new Vector3(1.5f, 0f, 0f);
     }
 
+
+
 }
