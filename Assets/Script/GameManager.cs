@@ -70,6 +70,21 @@ public class GameManager : MonoBehaviour
         plate.transform.position += new Vector3(1.5f, 0f, 0f);
     }
 
+    //you win the game when you complete all 5orders with 4/5 accuracy 
+    public void WinGame()
+    {
 
+        Debug.Log("You Won the game, Congrats :D");
+        //Show Chef Gray congrating the player 
+
+    }
+
+    //Game is over when you get 2 orders wrong 
+    public void GameOver()
+    {
+        Debug.Log("You lost :(((");
+
+        //halt whole game 
+    }
 
 }

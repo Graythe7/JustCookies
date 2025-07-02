@@ -14,12 +14,22 @@ public class Delivery : MonoBehaviour
     public Sprite emptyLineIcon;
     public Sprite successIcon;
     public Sprite failIcon;
-    public SpriteRenderer[] currIcons; //access the current icon we are updating 
-    private int iconIndexCounter = 0; //to keep track of orders 
+    public SpriteRenderer[] currIcons; //access the current icon we are updating
+    public SpriteRenderer deliveryTruck;
+    private int iconIndexCounter = 0; //to keep track of orders
+    private int wrongOrderTracker = 0; //to know if player has lost or not
 
     private void Start()
     {
         iconIndexCounter = 0;
+        wrongOrderTracker = 0;
+
+        foreach (var icon in currIcons)
+        {
+            icon.gameObject.SetActive(true);
+        }
+
+        deliveryTruck.gameObject.SetActive(false);
 
     }
 
@@ -60,6 +70,17 @@ public class Delivery : MonoBehaviour
 
                 //The Old order gotta go to trash
                 StartCoroutine(MoveToTrash(other.transform, trashSpot.transform.position, 1f));
+
+                //add one unit to wrong order tracker 
+                wrongOrderTracker++;
+                if(wrongOrderTracker >= 1)
+                {
+                    Debug.Log("wrong orders exceeded one!");
+
+                    // halt game and call gameover method
+                    GameManager.Instance.GameOver();
+
+                }
             }
 
             //move to next order in DeliveryScreen
@@ -120,6 +141,20 @@ public class Delivery : MonoBehaviour
             Debug.Log("index passed is not bounded, maybe round finished?");
             return; // don't run the rest of the code
         }
+
+        //in this state -> the round is complete ! 
+        if(index == currIcons.Length-1) //player completed all orders 
+        {
+            foreach (var icon in currIcons)
+            {
+                icon.gameObject.SetActive(false);
+            }
+
+            deliveryTruck.gameObject.SetActive(true);
+
+            GameManager.Instance.WinGame();
+        }
+
 
         if (isMatched)
         {
