@@ -60,7 +60,7 @@ public class SpawnCookie : MonoBehaviour
         PlateContainer plate = other.GetComponent<PlateContainer>();
         if (plate != null)
         {
-            Debug.Log("current plate assigned");
+            //current plate assigned
             currentPlate = plate;
         }
     }
@@ -71,8 +71,8 @@ public class SpawnCookie : MonoBehaviour
         {
             if (other.gameObject == currentPlate.gameObject)
             {
+                //Plate exited spawner
                 currentPlate = null; 
-                Debug.Log($"Plate exited spawner");
             }
         }
        

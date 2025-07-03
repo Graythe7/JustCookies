@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Transform plateInitialPoint;
     public GameObject platePrefab;
 
+    public ConveyorBelt conveyorBelt;
+
     public static GameManager Instance; // Singleton
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     public void SpawnNewPlate()
     {
         GameObject newPlate = Instantiate(platePrefab, plateSpawnSpot.position, Quaternion.identity);
+        conveyorBelt.SetCurrentPlate(newPlate.transform);
         StartCoroutine(PlateInitialMovement(newPlate, plateInitialPoint.position, 1f)); 
     }
 
