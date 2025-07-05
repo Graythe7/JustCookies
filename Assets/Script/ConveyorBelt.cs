@@ -41,7 +41,6 @@ public class ConveyorBelt : MonoBehaviour
             if (obj != null) //check that obj still exists
             {
                 obj.position = Vector3.Lerp(start, end, t);
-         
             }
             else
             {

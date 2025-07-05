@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     public ConveyorBelt conveyorBelt;
 
+    //to track each round to stop game later on GameOver/Win state
+    private bool isGameComplete = false;
+
     public static GameManager Instance; // Singleton
     private void Awake()
     {
@@ -27,13 +30,23 @@ public class GameManager : MonoBehaviour
         // When game starts -> need order and new plate ready 
         orderScreen.CreateRandomOrder();
         SpawnNewPlate();
+
+        isGameComplete = false;
     }
 
     public void SpawnNewPlate()
     {
-        GameObject newPlate = Instantiate(platePrefab, plateSpawnSpot.position, Quaternion.identity);
-        conveyorBelt.SetCurrentPlate(newPlate.transform);
-        StartCoroutine(PlateInitialMovement(newPlate, plateInitialPoint.position, 1f)); 
+        if (!isGameComplete)
+        {
+            GameObject newPlate = Instantiate(platePrefab, plateSpawnSpot.position, Quaternion.identity);
+            conveyorBelt.SetCurrentPlate(newPlate.transform); //pass latest plate to conveyor belt to move it
+            StartCoroutine(PlateInitialMovement(newPlate, plateInitialPoint.position, 1f));
+        }
+        else
+        {
+            Debug.Log("Game is complete -> no more plate is spawned !");
+        }
+        
     }
 
     public bool MatchOrder(PlateContainer plate)
@@ -76,8 +89,10 @@ public class GameManager : MonoBehaviour
     //you win the game when you complete all 5orders with 4/5 accuracy 
     public void WinGame()
     {
+        isGameComplete = true;
 
         Debug.Log("You Won the game, Congrats :D");
+        
         //Show Chef Gray congrating the player 
 
     }
@@ -85,6 +100,8 @@ public class GameManager : MonoBehaviour
     //Game is over when you get 2 orders wrong 
     public void GameOver()
     {
+        isGameComplete = true;
+
         Debug.Log("You lost :(((");
 
         //halt whole game 

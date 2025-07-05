@@ -73,7 +73,7 @@ public class Delivery : MonoBehaviour
 
                 //add one unit to wrong order tracker 
                 wrongOrderTracker++;
-                if(wrongOrderTracker >= 1)
+                if(wrongOrderTracker > 1)
                 {
                     Debug.Log("wrong orders exceeded one!");
 
