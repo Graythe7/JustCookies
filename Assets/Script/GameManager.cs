@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject platePrefab;
 
     public ConveyorBelt conveyorBelt;
+    public ChefMovement chefMovement;
 
     //to track each round to stop game later on GameOver/Win state
     private bool isGameComplete = false;
+    public bool hasGameWin = false; //only true when game -> Win && complete
 
     public static GameManager Instance; // Singleton
     private void Awake()
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
         SpawnNewPlate();
 
         isGameComplete = false;
+        hasGameWin = false;
     }
 
     public void SpawnNewPlate()
@@ -90,6 +93,9 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         isGameComplete = true;
+        hasGameWin = true;
+        //start chefGray Transition 
+        chefMovement.startTransition(isGameComplete);
 
         Debug.Log("You Won the game, Congrats :D");
         
@@ -101,6 +107,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameComplete = true;
+        //start chefGray Transition 
+        chefMovement.startTransition(isGameComplete);
 
         Debug.Log("You lost :(((");
 

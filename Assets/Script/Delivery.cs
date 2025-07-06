@@ -45,9 +45,6 @@ public class Delivery : MonoBehaviour
             //Update the icon on deliveryScreen seperately
             UpdateDeliveryScreen(iconIndexCounter, isMatch);
 
-            //create a new plate in either scenarios
-            GameManager.Instance.SpawnNewPlate();
-
             if (isMatch)
             {
                 Debug.Log("Correct Order Delivered!");
@@ -72,8 +69,7 @@ public class Delivery : MonoBehaviour
                 StartCoroutine(MoveToTrash(other.transform, trashSpot.transform.position, 1f));
 
                 //add one unit to wrong order tracker 
-                wrongOrderTracker++;
-                if(wrongOrderTracker > 1)
+                if(wrongOrderTracker >= 1)
                 {
                     Debug.Log("wrong orders exceeded one!");
 
@@ -81,7 +77,14 @@ public class Delivery : MonoBehaviour
                     GameManager.Instance.GameOver();
 
                 }
+                else
+                {
+                    wrongOrderTracker++;
+                }
             }
+
+            //create a new plate in either scenarios && if !gameOver() 
+            GameManager.Instance.SpawnNewPlate();
 
             //move to next order in DeliveryScreen
             iconIndexCounter++; 

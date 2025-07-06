@@ -13,21 +13,36 @@ public class OrderScreen : MonoBehaviour
     private int SyrupIndexRandom;
     private int DecorIndexRandom;
 
+    public SpriteRenderer winStateMonitor;
+
     private List<GameObject> currentVisuals = new List<GameObject>();
+
+    private void Start()
+    {
+        winStateMonitor.gameObject.SetActive(false);
+    }
 
     public void CreateRandomOrder()
     {
         // Clear previous visuals
         ClearVisuals();
 
-        BaseIndexRandom = Random.Range(0, BaseType.Length);
-        SyrupIndexRandom = Random.Range(0, SyrupType.Length);
-        DecorIndexRandom = Random.Range(0, DecorType.Length);
+        if (GameManager.Instance.hasGameWin)
+        {
+            winStateMonitor.gameObject.SetActive(true);
+        }
+        else
+        {
+            BaseIndexRandom = Random.Range(0, BaseType.Length);
+            SyrupIndexRandom = Random.Range(0, SyrupType.Length);
+            DecorIndexRandom = Random.Range(0, DecorType.Length);
 
-        // Instantiate and add to visuals
-        AddToVisuals(BaseType[BaseIndexRandom]);
-        AddToVisuals(SyrupType[SyrupIndexRandom]);
-        AddToVisuals(DecorType[DecorIndexRandom]);
+            // Instantiate and add to visuals
+            AddToVisuals(BaseType[BaseIndexRandom]);
+            AddToVisuals(SyrupType[SyrupIndexRandom]);
+            AddToVisuals(DecorType[DecorIndexRandom]);
+        }
+
     }
 
     public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnScreen()
