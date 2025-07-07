@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public ConveyorBelt conveyorBelt;
     public ChefMovement chefMovement;
+    public DialogueTrigger chefGrayDialogue;
 
     //to track each round to stop game later on GameOver/Win state
     private bool isGameComplete = false;
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
         // When game starts -> need order and new plate ready 
         orderScreen.CreateRandomOrder();
         SpawnNewPlate();
+
+        chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Intro);
 
         isGameComplete = false;
         hasGameWin = false;
