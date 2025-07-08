@@ -11,6 +11,8 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    public Animator animator;
+
     public GameObject dialogueBox;
     public TextMeshProUGUI dialogueText;
 
@@ -34,13 +36,16 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        animator.SetBool("isOpen", true);
+
         sentences.Clear();
 
         //get the sentences assigned in DialogueTrigger inspector 
         foreach(string sentence in dialogue.sentences)
         {
+            //sentence assigned in the new queue
             sentences.Enqueue(sentence);
-            Debug.Log("sentence assigned in the new queue");
+            
         }
 
         DisplayNextSentence();
@@ -56,12 +61,31 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        Debug.Log(sentence);
+        dialogueText.text = sentence;
+
+        //if player don't wanna wait for the whole typing effect, to make sure the sentence is displayed
+        //so we stop it to go to the next sentence 
+        StopAllCoroutines();
+
+        //to display sentence char by char -> typing effect
+        StartCoroutine(TypeSentence(sentence));
+    }
+
+    private float typingSpeed = 0.05f;
+    IEnumerator TypeSentence (string sentence)
+    {
+        dialogueText.text = "";
+
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
     }
 
     private void EndOfDialogue()
     {
-        Debug.Log("Reached end of sentences queue, End of Dialogues");
+        animator.SetBool("isOpen", false);
     }
 
 }

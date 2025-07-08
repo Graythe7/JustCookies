@@ -10,8 +10,8 @@ public class ConveyorBelt : MonoBehaviour
     //get the ref to latest plate spawned in game manager 
     public void SetCurrentPlate(Transform plate)
     {
+        //"latest plate assigned to coneyorBelt"
         currentPlate = plate;
-        Debug.Log("latest plate assigned to coneyorBelt");
     }
 
 

@@ -97,12 +97,10 @@ public class GameManager : MonoBehaviour
     {
         isGameComplete = true;
         hasGameWin = true;
-        //start chefGray Transition 
-        chefMovement.startTransition(isGameComplete);
 
-        Debug.Log("You Won the game, Congrats :D");
-        
-        //Show Chef Gray congrating the player 
+        //start chefGray Transition and Win dialogue
+        chefMovement.startTransition(isGameComplete);
+        chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Win);
 
     }
 
@@ -110,12 +108,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameComplete = true;
-        //start chefGray Transition 
+
+        //start chefGray Transition and Lose dialogue 
         chefMovement.startTransition(isGameComplete);
+        chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Lose);
 
-        Debug.Log("You lost :(((");
-
-        //halt whole game 
     }
 
 }

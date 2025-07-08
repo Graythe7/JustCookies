@@ -47,7 +47,7 @@ public class Delivery : MonoBehaviour
 
             if (isMatch)
             {
-                Debug.Log("Correct Order Delivered!");
+                //Correct Order Delivered!
                 Destroy(other.gameObject);
 
                 //Since the Order is correct, a new Box appears and sends out 
@@ -63,7 +63,7 @@ public class Delivery : MonoBehaviour
             else
             {
                 //Try again on the previous order till you get it right
-                Debug.Log("Wrong Order!");
+                //Wrong Order!
 
                 //The Old order gotta go to trash
                 StartCoroutine(MoveToTrash(other.transform, trashSpot.transform.position, 1f));
@@ -71,7 +71,7 @@ public class Delivery : MonoBehaviour
                 //add one unit to wrong order tracker 
                 if(wrongOrderTracker >= 1)
                 {
-                    Debug.Log("wrong orders exceeded one!");
+                    //"wrong orders exceeded one! -> lose state activated 
 
                     // halt game and call gameover method
                     GameManager.Instance.GameOver();
