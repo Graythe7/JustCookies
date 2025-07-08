@@ -162,7 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea6d4f3820a54816837eccdc2a1cf22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 963640210}
+  dialogueAnimator: {fileID: 963640210}
+  chefGrayAnimator: {fileID: 1981000002}
   dialogueBox: {fileID: 963640206}
   dialogueText: {fileID: 658880737}
 --- !u!1 &88736012
@@ -2110,7 +2111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -354, y: 80}
+  m_AnchoredPosition: {x: -354, y: -80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963640208
@@ -2884,7 +2885,6 @@ MonoBehaviour:
   plateInitialPoint: {fileID: 881820354}
   platePrefab: {fileID: 146295117062600435, guid: 31c311c6ecc86497ba83583b84ac330f, type: 3}
   conveyorBelt: {fileID: 1014857393}
-  chefMovement: {fileID: 1980999998}
   chefGrayDialogue: {fileID: 1981000001}
   hasGameWin: 0
 --- !u!1 &1190908792
@@ -4585,8 +4585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0114b7845c55a468c943a53e83b7725d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   chefGraySprite: {fileID: 1980999999}
-  chefPos: {fileID: 1981000000}
 --- !u!212 &1980999999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4673,19 +4673,22 @@ MonoBehaviour:
   - type: 0
     dialogue:
       sentences:
-      - 'help me cook '
-      - 'let''s go '
+      - Welcome to my kitchen :D
+      - Today, we make cookies.
+      - Tomorrow, we make history.
   - type: 1
     dialogue:
       sentences:
-      - 'you actually did it '
-      - Congrats
-      - 'you''ve healed my inner child '
+      - 'Wow! you actually did it '
+      - Sweet victory!
+      - The oven gods are proud.
+      - 'And you healed my inner child ! '
   - type: 2
     dialogue:
       sentences:
-      - 'Wow ! '
+      - Bruh!
       - you are truly STUPID
+      - Even the cookies are judging you now.
 --- !u!95 &1981000002
 Animator:
   serializedVersion: 7

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject platePrefab;
 
     public ConveyorBelt conveyorBelt;
-    public ChefMovement chefMovement;
+    //public ChefMovement chefAnimation;
     public DialogueTrigger chefGrayDialogue;
 
     //to track each round to stop game later on GameOver/Win state
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         hasGameWin = true;
 
         //start chefGray Transition and Win dialogue
-        chefMovement.startTransition(isGameComplete);
+        //chefAnimation.startTransition(isGameComplete);
         chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Win);
 
     }
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
         isGameComplete = true;
 
         //start chefGray Transition and Lose dialogue 
-        chefMovement.startTransition(isGameComplete);
+        //chefAnimation.startTransition(isGameComplete);
         chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Lose);
 
     }

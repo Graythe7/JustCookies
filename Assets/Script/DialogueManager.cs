@@ -11,7 +11,8 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Animator animator;
+    public Animator dialogueAnimator;
+    public Animator chefGrayAnimator;
 
     public GameObject dialogueBox;
     public TextMeshProUGUI dialogueText;
@@ -36,7 +37,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        animator.SetBool("isOpen", true);
+        dialogueAnimator.SetBool("isOpen", true);
+        chefGrayAnimator.SetBool("isInside", true);
 
         sentences.Clear();
 
@@ -85,7 +87,8 @@ public class DialogueManager : MonoBehaviour
 
     private void EndOfDialogue()
     {
-        animator.SetBool("isOpen", false);
+        dialogueAnimator.SetBool("isOpen", false);
+        chefGrayAnimator.SetBool("isInside", false);
     }
 
 }
