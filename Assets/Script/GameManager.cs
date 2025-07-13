@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,12 +12,20 @@ public class GameManager : MonoBehaviour
     public GameObject platePrefab;
 
     public ConveyorBelt conveyorBelt;
+
     //public ChefMovement chefAnimation;
     public DialogueTrigger chefGrayDialogue;
 
     //to track each round to stop game later on GameOver/Win state
     private bool isGameComplete = false;
     public bool hasGameWin = false; //only true when game -> Win && complete
+
+    //End of the Game UI Elements
+    public CanvasGroup endGameCanvas;
+    public TextMeshProUGUI gameResultText;
+    public float fadeDuration = 1f;
+    
+
 
     public static GameManager Instance; // Singleton
     private void Awake()
@@ -38,6 +48,11 @@ public class GameManager : MonoBehaviour
 
         isGameComplete = false;
         hasGameWin = false;
+
+        endGameCanvas.alpha = 0f;
+        endGameCanvas.interactable = false;
+        endGameCanvas.blocksRaycasts = false;
+        gameResultText.text = "";
     }
 
     public void SpawnNewPlate()
@@ -99,7 +114,6 @@ public class GameManager : MonoBehaviour
         hasGameWin = true;
 
         //start chefGray Transition and Win dialogue
-        //chefAnimation.startTransition(isGameComplete);
         chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Win);
 
     }
@@ -110,9 +124,62 @@ public class GameManager : MonoBehaviour
         isGameComplete = true;
 
         //start chefGray Transition and Lose dialogue 
-        //chefAnimation.startTransition(isGameComplete);
         chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Lose);
 
+    }
+
+    public void EndOfGameUI()
+    {
+        if (!isGameComplete)
+        {
+            return;
+        }
+
+        StartFadeInEndOfLevelUI();
+
+        if (hasGameWin)
+        {
+            gameResultText.text = "VICTORY";
+
+        }else if (!hasGameWin)
+        {
+            gameResultText.text = "GAME OVER";
+        }
+        else
+        {
+            Debug.LogWarning("End of Game UI Text Missing or unassigned");
+        }
+
+    }
+
+    public void RestartLevel()
+    {
+        Debug.Log("retry Level ");
+    }
+
+    public void LoadMainMenu()
+    {
+        Debug.Log("Load main menu scene");
+    }
+
+    public void StartFadeInEndOfLevelUI()
+    {
+        StartCoroutine(FadeInEndOfLevelUI());
+    }
+
+    private IEnumerator FadeInEndOfLevelUI()
+    {
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            endGameCanvas.alpha = Mathf.Clamp01(timer / fadeDuration);
+            yield return null;
+        }
+
+        endGameCanvas.interactable = true;
+        endGameCanvas.blocksRaycasts = true;
     }
 
 }

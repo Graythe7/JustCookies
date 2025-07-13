@@ -89,6 +89,9 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueAnimator.SetBool("isOpen", false);
         chefGrayAnimator.SetBool("isInside", false);
+
+        //when dialogue ends trigger the end of the level UI Elements
+        GameManager.Instance.EndOfGameUI();
     }
 
 }
