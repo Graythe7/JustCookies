@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -24,7 +26,6 @@ public class GameManager : MonoBehaviour
     public CanvasGroup endGameCanvas;
     public TextMeshProUGUI gameResultText;
     public float fadeDuration = 1f;
-    
 
 
     public static GameManager Instance; // Singleton
@@ -152,14 +153,15 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void RestartLevel()
+    public void RetryGame()
     {
-        Debug.Log("retry Level ");
+        // Reload the current active scene (since the scope of game isn't large yet)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMainMenu()
     {
-        Debug.Log("Load main menu scene");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void StartFadeInEndOfLevelUI()
