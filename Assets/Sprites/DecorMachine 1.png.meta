@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40a2b34f93cce47d0ad86f95c5d2458d
+guid: 8fdadad9a38b748ceaf48aa78b542053
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 51544956444562479
-    second: SyrupMachine_0
+      213: 2013839872744094800
+    second: DecorMachine 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SyrupMachine_0
+      name: DecorMachine 1_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 2
         y: 0
-        width: 58
+        width: 60
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2457d26ddf17b000800000000000000
-      internalID: 51544956444562479
+      spriteID: 05cfd69c1b892fb10800000000000000
+      internalID: 2013839872744094800
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SyrupMachine_0: 51544956444562479
+      DecorMachine 1_0: 2013839872744094800
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
