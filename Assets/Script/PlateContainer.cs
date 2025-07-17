@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlateContainer : MonoBehaviour
 {
-
+    
     // Flags to track if a category has been added
     private bool isBaseAdded = false;
     private bool isSyrupAdded = false;
@@ -38,11 +38,12 @@ public class PlateContainer : MonoBehaviour
         switch (category)
         {
             case "Base":
+
+                //Base category marked as added on plate: {gameObject.name}
                 if (!isBaseAdded)
                 {
                     isBaseAdded = true;
                     baseTypeIndex = ingredientIndex;
-                    Debug.Log($"Base category marked as added on plate: {gameObject.name}");
                     return true;
                 }
                 Debug.LogWarning($"Base category already marked as added on plate: {gameObject.name}");
