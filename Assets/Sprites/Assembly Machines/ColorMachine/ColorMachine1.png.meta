@@ -103,12 +103,12 @@ TextureImporter:
       name: ColorMachine1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 54
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 4
+        y: 0
+        width: 56
+        height: 80
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7aa2b41d619e94981a14c14ef4957f93
     internalID: 0
     vertices: []
     indices: 

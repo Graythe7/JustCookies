@@ -6,6 +6,7 @@ public class SpawnCookie : MonoBehaviour
 {
     private PlateContainer currentPlate; // The plate we are currently interacting with
 
+    public AssemblyMachine assemblyMachine;
     public GameObject[] ingredientType;
 
     private string counterCategory;
@@ -25,10 +26,14 @@ public class SpawnCookie : MonoBehaviour
             // Check if the ingredientIndex is within the bounds of the array
             if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length && !currentPlate.HasCategoryBeenAdded(counterCategory))
             {
+                assemblyMachine.ActivateAnimation(true);
+
                 AddPrefab(ingredientType[ingredientIndex]);
 
                 //Mark the category as added on the current plate
                 currentPlate.MarkCategoryAsAdded(counterCategory, ingredientIndex);
+
+                //assemblyMachine.ActivateAnimation(false);
             }
             else if (currentPlate.HasCategoryBeenAdded(counterCategory))
             {

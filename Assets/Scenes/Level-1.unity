@@ -441,8 +441,8 @@ GameObject:
   m_Component:
   - component: {fileID: 95420546}
   - component: {fileID: 95420545}
-  - component: {fileID: 95420548}
   - component: {fileID: 95420547}
+  - component: {fileID: 95420548}
   m_Layer: 0
   m_Name: SyrupMachine_0
   m_TagString: Untagged
@@ -551,10 +551,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 95420544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8015b9722fe604fc08878ca50703bee3, type: 3}
+  m_Script: {fileID: 11500000, guid: ec1785cc70e414fe6a14cf7b1da79f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 95420547}
+  assemblyMachine: {fileID: 95420547}
 --- !u!1 &167441079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,8 +1910,8 @@ GameObject:
   m_Component:
   - component: {fileID: 612202155}
   - component: {fileID: 612202154}
-  - component: {fileID: 612202157}
   - component: {fileID: 612202156}
+  - component: {fileID: 612202157}
   m_Layer: 0
   m_Name: ColorMachine_0
   m_TagString: Untagged
@@ -2020,10 +2020,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 612202153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8015b9722fe604fc08878ca50703bee3, type: 3}
+  m_Script: {fileID: 11500000, guid: ec1785cc70e414fe6a14cf7b1da79f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 612202156}
+  assemblyMachine: {fileID: 612202156}
 --- !u!1 &658880735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,6 +3022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assemblyMachine: {fileID: 1401218905}
   ingredientType:
   - {fileID: 748676736721304044, guid: a4db06f3e70454f1ea755e0ba1914330, type: 3}
   - {fileID: 2889130537339988271, guid: 5617564fc800840d5a630f97b4d58ab4, type: 3}
@@ -4408,8 +4409,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1401218903}
   - component: {fileID: 1401218902}
-  - component: {fileID: 1401218905}
   - component: {fileID: 1401218904}
+  - component: {fileID: 1401218905}
   m_Layer: 0
   m_Name: DecorMachine_0
   m_TagString: Untagged
@@ -4518,10 +4519,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401218901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8015b9722fe604fc08878ca50703bee3, type: 3}
+  m_Script: {fileID: 11500000, guid: ec1785cc70e414fe6a14cf7b1da79f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1401218904}
+  assemblyMachine: {fileID: 1401218904}
 --- !u!1 &1459796257
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,6 +4610,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1527775549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527775551}
+  - component: {fileID: 1527775550}
+  m_Layer: 0
+  m_Name: AssemblyMachineManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1527775550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527775549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27fed87a2de34e7cabd2adabeab34fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMachine: {fileID: 0}
+  SyrupMachine: {fileID: 0}
+  DecorMachine: {fileID: 0}
+--- !u!4 &1527775551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527775549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6202049, y: 0.12171449, z: 0.03993701}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1648956148
 GameObject:
   m_ObjectHideFlags: 0
@@ -5284,6 +5332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assemblyMachine: {fileID: 612202157}
   ingredientType:
   - {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
   - {fileID: 7774886101586662895, guid: 82d728c63e14740d5a18d3cd786f912e, type: 3}
@@ -5497,6 +5546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775feea098284fbea266535ef1d8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assemblyMachine: {fileID: 95420548}
   ingredientType:
   - {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
   - {fileID: 1793739093905920685, guid: d5fcf74cca3904031a7a52a62e2aa88e, type: 3}
@@ -6265,6 +6315,7 @@ SceneRoots:
   - {fileID: 1044796746}
   - {fileID: 254022428}
   - {fileID: 167441082}
+  - {fileID: 1527775551}
   - {fileID: 612202155}
   - {fileID: 95420546}
   - {fileID: 1401218903}
