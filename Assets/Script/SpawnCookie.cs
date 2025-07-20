@@ -27,7 +27,7 @@ public class SpawnCookie : MonoBehaviour
             // Check if the ingredientIndex is within the bounds of the array
             if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length && !currentPlate.HasCategoryBeenAdded(counterCategory))
             {
-                //play activation animation
+                //play activation animation -> both machine and ingredient drop
                 assemblyMachine.ActivateAnimation(true);
                 ingredientAnim.ActivateAnimation(ingredientIndex, true);
 
