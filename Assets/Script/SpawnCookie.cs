@@ -7,6 +7,7 @@ public class SpawnCookie : MonoBehaviour
     private PlateContainer currentPlate; // The plate we are currently interacting with
 
     public AssemblyMachine assemblyMachine;
+    public IngredientAnimation ingredientAnim;
     public GameObject[] ingredientType;
 
     private string counterCategory;
@@ -26,24 +27,26 @@ public class SpawnCookie : MonoBehaviour
             // Check if the ingredientIndex is within the bounds of the array
             if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length && !currentPlate.HasCategoryBeenAdded(counterCategory))
             {
+                //play activation animation
                 assemblyMachine.ActivateAnimation(true);
+                ingredientAnim.ActivateAnimation(ingredientIndex, true);
 
-                AddPrefab(ingredientType[ingredientIndex]);
+                StartCoroutine(DelayedSpawn(ingredientIndex));
 
                 //Mark the category as added on the current plate
                 currentPlate.MarkCategoryAsAdded(counterCategory, ingredientIndex);
-
-                //assemblyMachine.ActivateAnimation(false);
             }
             else if (currentPlate.HasCategoryBeenAdded(counterCategory))
             {
-                Debug.LogWarning("Ingredient Already added to plate.");
+                //play can't spawn animation
+                assemblyMachine.CantSpawnAnimation(true);
             }
 
         }
         else if (currentPlate == null)
         {
-            Debug.LogWarning("No plate detected to spawn ingredient on.");
+            //play can't spawn animation
+            assemblyMachine.CantSpawnAnimation(true);
         }
 
     }
@@ -81,5 +84,13 @@ public class SpawnCookie : MonoBehaviour
             }
         }
        
+    }
+
+    //add 1f delay to let the drop prefab animation to play first
+    private IEnumerator DelayedSpawn(int ingredientIndex)
+    {
+        yield return new WaitForSeconds(1f);
+
+        AddPrefab(ingredientType[ingredientIndex]);
     }
 }

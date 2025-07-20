@@ -13,14 +13,24 @@ public class AssemblyMachine : MonoBehaviour
 
         if (isActivated)
         {
-            StartCoroutine(DeactivateAfterDelay());
+            StartCoroutine(DeactivateAfterDelay("isActivated",false));
         }
     }
 
-    private IEnumerator DeactivateAfterDelay()
+    public void CantSpawnAnimation(bool wrongAction)
+    {
+        assemblyMachine.SetBool("wrongAction", wrongAction); 
+
+        if (wrongAction) 
+        {
+            StartCoroutine(DeactivateAfterDelay("wrongAction",false));
+        }
+    }
+
+    private IEnumerator DeactivateAfterDelay(string parametersName,bool defaultState)
     {
         yield return new WaitForSeconds(0.1f); // adjust to animation length
-        assemblyMachine.SetBool("isActivated", false);
+        assemblyMachine.SetBool(parametersName, defaultState);
     }
 
 }
