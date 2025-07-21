@@ -31,7 +31,8 @@ public class SpawnCookie : MonoBehaviour
                 assemblyMachine.ActivateAnimation(true);
                 ingredientAnim.ActivateAnimation(ingredientIndex, true);
 
-                StartCoroutine(DelayedSpawn(ingredientIndex));
+                // Cache the plate and start the coroutine with it
+                StartCoroutine(DelayedSpawn(ingredientIndex, currentPlate));
 
                 //Mark the category as added on the current plate
                 currentPlate.MarkCategoryAsAdded(counterCategory, ingredientIndex);
@@ -50,17 +51,6 @@ public class SpawnCookie : MonoBehaviour
         }
 
     }
-
-    private void AddPrefab(GameObject prefab)
-    {
-        Vector3 spawnPosition = currentPlate.transform.position + new Vector3(0f, 0.3f, 0f);
-        GameObject newIngredient = Instantiate(prefab, spawnPosition, Quaternion.identity, currentPlate.transform);
-
-        //the originalScale is for the distorbed ratio of the child (ingredient), not sure if I still need it 
-        Vector3 originalScale = newIngredient.transform.localScale;
-        newIngredient.transform.localScale = new Vector3(originalScale.x * 1f, originalScale.y * 1f, originalScale.z);
-    }
-
 
     // Plate Detection 
     private void OnTriggerEnter2D(Collider2D other)
@@ -87,10 +77,21 @@ public class SpawnCookie : MonoBehaviour
     }
 
     //add 1f delay to let the drop prefab animation to play first
-    private IEnumerator DelayedSpawn(int ingredientIndex)
+    private IEnumerator DelayedSpawn(int ingredientIndex, PlateContainer targetPlate)
     {
         yield return new WaitForSeconds(1f);
+        AddPrefab(ingredientType[ingredientIndex], targetPlate);
+    }
 
-        AddPrefab(ingredientType[ingredientIndex]);
+    private void AddPrefab(GameObject prefab, PlateContainer targetPlate)
+    {
+        if (targetPlate == null) return; // Safety check
+
+        Vector3 spawnPosition = targetPlate.transform.position + new Vector3(0f, 0.3f, 0f);
+        GameObject newIngredient = Instantiate(prefab, spawnPosition, Quaternion.identity, targetPlate.transform);
+
+        //the originalScale is for the distorbed ratio of the child (ingredient), not sure if I still need it 
+        Vector3 originalScale = newIngredient.transform.localScale;
+        newIngredient.transform.localScale = new Vector3(originalScale.x * 1f, originalScale.y * 1f, originalScale.z);
     }
 }
