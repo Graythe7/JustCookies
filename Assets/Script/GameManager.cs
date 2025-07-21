@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameResultText;
     public float fadeDuration = 1f;
 
+    //to disable and enable em during game 
+    public Button forwardButton;
+    public Button backButton;
+
 
     public static GameManager Instance; // Singleton
     private void Awake()
@@ -50,6 +54,9 @@ public class GameManager : MonoBehaviour
         isGameComplete = false;
         hasGameWin = false;
 
+        //deactive the movement buttons in start of the game 
+        PlayerMovementEnabled(false);
+
         endGameCanvas.alpha = 0f;
         endGameCanvas.interactable = false;
         endGameCanvas.blocksRaycasts = false;
@@ -61,7 +68,7 @@ public class GameManager : MonoBehaviour
         if (!isGameComplete)
         {
             GameObject newPlate = Instantiate(platePrefab, plateSpawnSpot.position, Quaternion.identity);
-            conveyorBelt.SetCurrentPlate(newPlate.transform); //pass latest plate to conveyor belt to move it
+            
             StartCoroutine(PlateInitialMovement(newPlate, plateInitialPoint.position, 1f));
         }
         else
@@ -106,7 +113,21 @@ public class GameManager : MonoBehaviour
         }
         plate.transform.position = targetPos;
         plate.transform.position += new Vector3(1.5f, 0f, 0f);
+
+        //pass latest plate to conveyor belt to move it -> when the initial movement is complete
+        conveyorBelt.SetCurrentPlate(plate.transform);
+        Debug.Log("plate is assigned after initial movement");
     }
+
+    public void PlayerMovementEnabled(bool isEnabled)
+    {
+
+        forwardButton.interactable = isEnabled;
+        backButton.interactable = isEnabled;
+
+        Debug.Log("Movement is: " + isEnabled);
+    }
+
 
     //you win the game when you complete all 5orders with 4/5 accuracy 
     public void WinGame()

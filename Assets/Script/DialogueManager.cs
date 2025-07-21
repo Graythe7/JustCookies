@@ -19,6 +19,9 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    // I wanna pass this to game manager at start -> to enable movement buttons
+    public bool hasIntroDialogueEnded = false;
+
     //use singleton 
     public static DialogueManager Instance;
 
@@ -90,8 +93,13 @@ public class DialogueManager : MonoBehaviour
         dialogueAnimator.SetBool("isOpen", false);
         chefGrayAnimator.SetBool("isInside", false);
 
+        //enable movement specially after intro (in other cased there is no plate to move)
+        GameManager.Instance.PlayerMovementEnabled(true);
+
         //when dialogue ends trigger the end of the level UI Elements
         GameManager.Instance.EndOfGameUI();
     }
+
+    
 
 }

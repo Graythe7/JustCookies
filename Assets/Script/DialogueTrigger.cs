@@ -28,11 +28,11 @@ public class DialogueTrigger : MonoBehaviour
         Dialogue selected = GetDialogue(type);
         if (selected == null)
         {
-            Debug.LogWarning($"No dialogue assigned for type: {type}");
+            //No dialogue assigned 
             return;
         }
+
         DialogueManager.Instance.StartDialogue(selected);
-        Debug.Log($"Triggered {type} dialogue.");
 
     }
 

@@ -166,6 +166,7 @@ MonoBehaviour:
   chefGrayAnimator: {fileID: 1981000002}
   dialogueBox: {fileID: 963640206}
   dialogueText: {fileID: 658880737}
+  hasIntroDialogueEnded: 0
 --- !u!1 &67758020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,7 +3559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &1007428363
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4089,6 +4090,8 @@ MonoBehaviour:
   endGameCanvas: {fileID: 1007428363}
   gameResultText: {fileID: 461288852}
   fadeDuration: 1
+  forwardButton: {fileID: 995609297}
+  backButton: {fileID: 555479996}
 --- !u!1 &1190908792
 GameObject:
   m_ObjectHideFlags: 0
