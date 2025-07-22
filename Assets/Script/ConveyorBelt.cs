@@ -24,7 +24,19 @@ public class ConveyorBelt : MonoBehaviour
     public void MoveBackward()
     {
         if (currentPlate != null)
+        {
+            float newX = currentPlate.position.x - movementDistant.x;
+
+            // Block movement if it would go beyond x = -5
+            if (newX < -3f)
+            {
+                Debug.Log("Can't move further left. Plate would go beyond -5 on x-axis.");
+                return;
+            }
+
             StartCoroutine(MoveObjectSmoothly(currentPlate, -movementDistant, 0.3f));
+        }
+            
     }
 
     //plate moves smoothly 
