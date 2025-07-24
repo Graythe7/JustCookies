@@ -12,6 +12,9 @@ public class SpawnCookie : MonoBehaviour
 
     private string counterCategory;
 
+    //required order of ingredients
+    private readonly string[] requiredOrder = { "Base", "Syrup", "Decor" };
+
 
     private void Awake()
     {
@@ -22,33 +25,48 @@ public class SpawnCookie : MonoBehaviour
     // Connect to Button to add visuals 
     public void SpawnIngredient(int ingredientIndex)
     {
-        if (currentPlate != null)
+        //if no plate detected, skip this method completely
+        if (currentPlate == null)
         {
-            // Check if the ingredientIndex is within the bounds of the array
-            if (ingredientIndex >= 0 && ingredientIndex < ingredientType.Length && !currentPlate.HasCategoryBeenAdded(counterCategory))
-            {
-                //play activation animation -> both machine and ingredient drop
-                assemblyMachine.ActivateAnimation(true);
-                ingredientAnim.ActivateAnimation(ingredientIndex, true);
-
-                // Cache the plate and start the coroutine with it
-                StartCoroutine(DelayedSpawn(ingredientIndex, currentPlate));
-
-                //Mark the category as added on the current plate
-                currentPlate.MarkCategoryAsAdded(counterCategory, ingredientIndex);
-            }
-            else if (currentPlate.HasCategoryBeenAdded(counterCategory))
-            {
-                //play can't spawn animation
-                assemblyMachine.CantSpawnAnimation(true);
-            }
-
-        }
-        else if (currentPlate == null)
-        {
-            //play can't spawn animation
             assemblyMachine.CantSpawnAnimation(true);
+            return;
         }
+
+        //prevent Skipping a category
+        //This is either "Base", "Syrup", or "Decor"
+        string category = counterCategory; 
+
+        // Find the current category index in order
+        int currentIndex = System.Array.IndexOf(requiredOrder, category);
+
+        // Check if all previous categories are already added
+        for (int i = 0; i < currentIndex; i++)
+        {
+            string requiredCategory = requiredOrder[i];
+            if (!currentPlate.HasCategoryBeenAdded(requiredCategory))
+            {
+                Debug.LogWarning($"Cannot add {category} before {requiredCategory} is added.");
+                assemblyMachine.CantSpawnAnimation(true);
+                return;
+            }
+        }
+
+
+        // Prevent duplicate placement
+        if (currentPlate.HasCategoryBeenAdded(category))
+        {
+            assemblyMachine.CantSpawnAnimation(true);
+            return;
+        }
+
+        // Proceed with spawn
+        assemblyMachine.ActivateAnimation(true);
+        ingredientAnim.ActivateAnimation(ingredientIndex, true);
+        StartCoroutine(DelayedSpawn(ingredientIndex, currentPlate));
+
+        // Mark as added
+        currentPlate.MarkCategoryAsAdded(category, ingredientIndex);
+
 
     }
 
