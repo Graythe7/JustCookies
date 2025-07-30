@@ -5,7 +5,13 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour
 {
     private Transform currentPlate;  // assign the new plate to this when spawned
-    private Vector3 movementDistant = new Vector3(3.0f, 0 ,0);
+    public float movementDist = 3.0f;
+    private Vector3 movementDistant;
+
+    private void Awake()
+    {
+        movementDistant = new Vector3(movementDist, 0, 0);
+    }
 
     //get the ref to latest plate spawned in game manager 
     public void SetCurrentPlate(Transform plate)
@@ -28,7 +34,7 @@ public class ConveyorBelt : MonoBehaviour
             float newX = currentPlate.position.x - movementDistant.x;
 
             // Block movement if it would go beyond x = -5
-            if (newX < -3f)
+            if (newX < -8.0f)
             {
                 Debug.Log("Can't move further left. Plate would go beyond -5 on x-axis.");
                 return;

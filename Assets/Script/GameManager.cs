@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public Transform plateInitialPoint;
     public GameObject platePrefab;
 
+    //set the small movement at the end of the plateInitialMovement
+    public float plateInitialOffset = 1.5f;
+
     public ConveyorBelt conveyorBelt;
 
     //public ChefMovement chefAnimation;
@@ -112,7 +115,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         plate.transform.position = targetPos;
-        plate.transform.position += new Vector3(1.5f, 0f, 0f);
+        plate.transform.position += new Vector3(plateInitialOffset, 0f, 0f);
 
         //pass latest plate to conveyor belt to move it -> when the initial movement is complete
         conveyorBelt.SetCurrentPlate(plate.transform);
