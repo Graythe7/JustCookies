@@ -1,24 +1,42 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnCookie : MonoBehaviour
 {
     private PlateContainer currentPlate; // The plate we are currently interacting with
 
     public AssemblyMachine assemblyMachine;
-    public IngredientAnimation ingredientAnim;
+    public IngredientAnimation ingredientAnim; //passing the Drop Animation 
     public GameObject[] ingredientType;
 
     private string counterCategory;
 
-    //required order of ingredients
-    private readonly string[] requiredOrder = { "Base", "Syrup", "Decor" };
+    //required order of ingredients in  each level 
+    [SerializeField] private string[] requiredOrderLevel1 = { "Base", "Syrup", "Decor" };
+    [SerializeField] private string[] requiredOrderLevel2 = { "Shape", "Base", "Syrup", "Decor" };
+
+    private string[] currentRequiredOrder;
+
 
 
     private void Awake()
     {
         counterCategory = gameObject.tag;
+
+        // Get the active scene name
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        // Choose required order based on scene
+        if (sceneName == "Level-1")
+        {
+            currentRequiredOrder = requiredOrderLevel1;
+        }
+        else if (sceneName == "Level-2")
+        {
+            currentRequiredOrder = requiredOrderLevel2;
+        }
     }
 
 
@@ -37,12 +55,12 @@ public class SpawnCookie : MonoBehaviour
         string category = counterCategory; 
 
         // Find the current category index in order
-        int currentIndex = System.Array.IndexOf(requiredOrder, category);
+        int currentIndex = System.Array.IndexOf(currentRequiredOrder, category);
 
         // Check if all previous categories are already added
         for (int i = 0; i < currentIndex; i++)
         {
-            string requiredCategory = requiredOrder[i];
+            string requiredCategory = currentRequiredOrder[i];
             if (!currentPlate.HasCategoryBeenAdded(requiredCategory))
             {
                 Debug.LogWarning($"Cannot add {category} before {requiredCategory} is added.");
@@ -83,15 +101,11 @@ public class SpawnCookie : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (currentPlate != null)
+        if (currentPlate != null && other.gameObject == currentPlate.gameObject)
         {
-            if (other.gameObject == currentPlate.gameObject)
-            {
-                //Plate exited spawner
-                currentPlate = null; 
-            }
+            currentPlate = null;
         }
-       
+
     }
 
     //add 1f delay to let the drop prefab animation to play first
