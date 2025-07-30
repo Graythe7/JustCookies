@@ -3882,6 +3882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71580f6cbc1004e89af9b4dfd949015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementDist: 3
 --- !u!1 &1037906662
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,6 +4218,7 @@ MonoBehaviour:
   plateSpawnSpot: {fileID: 1247699584}
   plateInitialPoint: {fileID: 881820354}
   platePrefab: {fileID: 146295117062600435, guid: 31c311c6ecc86497ba83583b84ac330f, type: 3}
+  plateInitialOffset: 1.5
   conveyorBelt: {fileID: 1014857393}
   chefGrayDialogue: {fileID: 1981000001}
   hasGameWin: 0
