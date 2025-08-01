@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b776b079cc0b346919fe540a31db655e, type: 3}
+  m_Name: SquareShape
+  m_EditorClassIdentifier: 
+  shapeName: Square
+  shapePrefab: {fileID: 8780990507026411035, guid: 0c87fed179bfd4ce0b40c25386e47564, type: 3}
+  baseVariants:
+  - {fileID: 2445201692416515291, guid: 6e2d1c0d96952427483abe8bb0830667, type: 3}
+  - {fileID: 3888439292372207911, guid: 76f0470b8265145afa06c6472f474ad1, type: 3}
+  - {fileID: 3134917713955718903, guid: ff7eb83d2a2df40d79a7223483742d22, type: 3}
+  syrupVariants:
+  - {fileID: 5407532058651939018, guid: 5418d2553b503467ab503e99d57cefdd, type: 3}
+  - {fileID: 2921477091920282330, guid: 3a819650238ee4ac19acc7ea7f4057a4, type: 3}
+  - {fileID: 4832304445810366879, guid: c7802380eea234d83b26956a9a14fd0e, type: 3}
+  decorVariants:
+  - {fileID: 3709330821038216006, guid: 986917ab1c5ee41a3a26561b52817677, type: 3}
+  - {fileID: 6084317926206137724, guid: 37ea9fbbc79da4dcd9da476ccf5064d3, type: 3}
+  - {fileID: 3067503197939892942, guid: 2743cc7a11c4b4284b393bc9591c7427, type: 3}
+  - {fileID: 3856411348306911381, guid: 173830856f30a4478b6e5398cbe9d2e1, type: 3}

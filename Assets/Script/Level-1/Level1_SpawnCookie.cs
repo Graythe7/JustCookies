@@ -1,9 +1,9 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SpawnCookie : MonoBehaviour
+public class Level1_SpawnCookie : MonoBehaviour
 {
     private PlateContainer currentPlate; // The plate we are currently interacting with
 
@@ -14,8 +14,8 @@ public class SpawnCookie : MonoBehaviour
     private string counterCategory;
 
     //required order of ingredients in  each level 
-    [SerializeField] private string[] requiredOrderLevel1 = { "Base", "Syrup", "Decor" };
-    [SerializeField] private string[] requiredOrderLevel2 = { "Shape", "Base", "Syrup", "Decor" };
+    private string[] requiredOrderLevel1 = { "Base", "Syrup", "Decor" };
+
 
     private string[] currentRequiredOrder;
 
@@ -24,19 +24,6 @@ public class SpawnCookie : MonoBehaviour
     private void Awake()
     {
         counterCategory = gameObject.tag;
-
-        // Get the active scene name
-        string sceneName = SceneManager.GetActiveScene().name;
-
-        // Choose required order based on scene
-        if (sceneName == "Level-1")
-        {
-            currentRequiredOrder = requiredOrderLevel1;
-        }
-        else if (sceneName == "Level-2")
-        {
-            currentRequiredOrder = requiredOrderLevel2;
-        }
     }
 
 
@@ -52,7 +39,7 @@ public class SpawnCookie : MonoBehaviour
 
         //prevent Skipping a category
         //This is either "Base", "Syrup", or "Decor"
-        string category = counterCategory; 
+        string category = counterCategory;
 
         // Find the current category index in order
         int currentIndex = System.Array.IndexOf(currentRequiredOrder, category);

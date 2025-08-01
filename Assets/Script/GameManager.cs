@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /*
     public bool MatchOrder(PlateContainer plate)
     {
         if (plate != null && orderScreen != null)
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("Plate or OrderScreen reference missing.");
         return false;
     }
+    */
 
     private IEnumerator PlateInitialMovement(GameObject plate, Vector3 targetPos, float duration)
     {

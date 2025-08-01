@@ -32,7 +32,7 @@ public class Delivery : MonoBehaviour
         deliveryTruck.gameObject.SetActive(false);
 
     }
-
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -92,6 +92,7 @@ public class Delivery : MonoBehaviour
 
         //Destroy(other.gameObject);
     }
+    */
 
     private IEnumerator MoveBox(GameObject box, Vector3 targetPos, float duration)
     {

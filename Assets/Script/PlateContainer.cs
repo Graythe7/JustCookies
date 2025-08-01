@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class PlateContainer : MonoBehaviour
 {
-    
+    /* In terms of compability of this code with both levels 
+     * Still works with Level 1 because Shape is never queried or marked in that level
+     */
+
+    // This stores the spawned Shape GameObject
+    public GameObject currentShapeObject;
+
     // Flags to track if a category has been added
+    private bool isShapeAdded = false;
     private bool isBaseAdded = false;
     private bool isSyrupAdded = false;
     private bool isDecorAdded = false;
 
     // Variables to store the SPECIFIC index of the ingredient added for each category
+    private int shapeTypeIndex = -1;
     private int baseTypeIndex = -1;
     private int syrupTypeIndex = -1;
     private int decorTypeIndex = -1;
@@ -20,6 +28,8 @@ public class PlateContainer : MonoBehaviour
     {
         switch (category)
         {
+            case "Shape":
+                return isShapeAdded;
             case "Base":
                 return isBaseAdded;
             case "Syrup":
@@ -37,6 +47,16 @@ public class PlateContainer : MonoBehaviour
     {
         switch (category)
         {
+            case "Shape":
+                if (!isShapeAdded)
+                {
+                    isShapeAdded = true;
+                    shapeTypeIndex = ingredientIndex;
+                    return true;
+                }
+                Debug.LogWarning($"Shape category already marked as added on plate: {gameObject.name}");
+                return false;
+
             case "Base":
 
                 //Base category marked as added on plate: {gameObject.name}
@@ -82,13 +102,15 @@ public class PlateContainer : MonoBehaviour
         Debug.Log("Decor added:" + isDecorAdded + "type of Decor:" + decorTypeIndex);
     }
 
-    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate()
+    //!!!!don't forget to update this part later 
+    public (int shapeTypeIndex, int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate()
     {
+        int shapeIndex = shapeTypeIndex;
         int baseIndex = baseTypeIndex;   
         int syrupIndex = syrupTypeIndex;
         int decorIndex = decorTypeIndex;
 
-        return (baseIndex, syrupIndex, decorIndex);
+        return (shapeIndex,baseIndex, syrupIndex, decorIndex);
     }
 
 }

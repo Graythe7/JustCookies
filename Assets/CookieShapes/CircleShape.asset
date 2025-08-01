@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b776b079cc0b346919fe540a31db655e, type: 3}
+  m_Name: CircleShape
+  m_EditorClassIdentifier: 
+  shapeName: Circle
+  shapePrefab: {fileID: 4847553395329074399, guid: 263eb5c3b437e4f269230f43707b21c4, type: 3}
+  baseVariants:
+  - {fileID: 8781646669967174393, guid: 9d77ec08bc08343148ecade20f28d959, type: 3}
+  - {fileID: 7774886101586662895, guid: edf239c183e3c4ea18e6f3b32f5f0249, type: 3}
+  - {fileID: 979383566385888613, guid: 371614556397a4c5ba46e31bf3042240, type: 3}
+  syrupVariants:
+  - {fileID: 7490160088239075088, guid: 3fb91898aee3a4086be3e2e6f011c1df, type: 3}
+  - {fileID: 1793739093905920685, guid: 3afd0537f44434a4280a30de0be716f3, type: 3}
+  - {fileID: 6110171700160290324, guid: 619539d8a4e7d40e8aab8030b951810d, type: 3}
+  decorVariants:
+  - {fileID: 3709330821038216006, guid: 986917ab1c5ee41a3a26561b52817677, type: 3}
+  - {fileID: 6084317926206137724, guid: 37ea9fbbc79da4dcd9da476ccf5064d3, type: 3}
+  - {fileID: 3067503197939892942, guid: 2743cc7a11c4b4284b393bc9591c7427, type: 3}
+  - {fileID: 3856411348306911381, guid: 173830856f30a4478b6e5398cbe9d2e1, type: 3}

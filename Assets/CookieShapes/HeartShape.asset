@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b776b079cc0b346919fe540a31db655e, type: 3}
+  m_Name: HeartShape
+  m_EditorClassIdentifier: 
+  shapeName: Heart
+  shapePrefab: {fileID: 7984983740144657976, guid: 6f1468369db1c447eb863de4561f3093, type: 3}
+  baseVariants:
+  - {fileID: 7590479817611227468, guid: a39237ad8343741ab93df9b98dce43ba, type: 3}
+  - {fileID: 889539449933905602, guid: dad91420d667444fcb75e2811dcf5624, type: 3}
+  - {fileID: 6947965955652716546, guid: 85d2ed13b710a4888a95c97a63024d3c, type: 3}
+  syrupVariants:
+  - {fileID: 6307323362684657214, guid: d8da3ea4bbeeb4f13be04a00b1190d34, type: 3}
+  - {fileID: 5506191063410947531, guid: 3376e58a8620f4ce899869bce6ce4182, type: 3}
+  - {fileID: 5908105055450687985, guid: 188eabb96050745539aa861eb6525401, type: 3}
+  decorVariants:
+  - {fileID: 3709330821038216006, guid: 986917ab1c5ee41a3a26561b52817677, type: 3}
+  - {fileID: 6084317926206137724, guid: 37ea9fbbc79da4dcd9da476ccf5064d3, type: 3}
+  - {fileID: 3067503197939892942, guid: 2743cc7a11c4b4284b393bc9591c7427, type: 3}
+  - {fileID: 3856411348306911381, guid: 173830856f30a4478b6e5398cbe9d2e1, type: 3}
