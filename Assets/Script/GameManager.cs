@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         else
             Instance = this;
+
+        
     }
 
 
@@ -81,28 +83,32 @@ public class GameManager : MonoBehaviour
         
     }
 
-    /*
+    
     public bool MatchOrder(PlateContainer plate)
     {
         if (plate != null && orderScreen != null)
         {
-            // Get the order from plate
-            var (plateBase, plateSyrup, plateDecor) = plate.CurrentOrderOnPlate();
 
-            //Get the order from screen
-            var (screenBase, screenSyrup, screenDecor) = orderScreen.CurrentOrderOnScreen();
+            if (CurrentScene() == "Level-1")
+            {
+                // Get the order from plate
+                var (plateBase, plateSyrup, plateDecor) = plate.CurrentOrderOnPlate_Level1();
 
-            // Compare them, if even one item is false -> all Fail
-            return plateBase == screenBase &&
-                   plateSyrup == screenSyrup &&
-                   plateDecor == screenDecor;
+                //Get the order from screen
+                var (screenBase, screenSyrup, screenDecor) = orderScreen.CurrentOrderOnScreen();
+
+                // Compare them, if even one item is false -> all Fail
+                return plateBase == screenBase &&
+                       plateSyrup == screenSyrup &&
+                       plateDecor == screenDecor;
+            }
 
         }
 
         Debug.LogWarning("Plate or OrderScreen reference missing.");
         return false;
     }
-    */
+    
 
     private IEnumerator PlateInitialMovement(GameObject plate, Vector3 targetPos, float duration)
     {
@@ -208,6 +214,12 @@ public class GameManager : MonoBehaviour
 
         endGameCanvas.interactable = true;
         endGameCanvas.blocksRaycasts = true;
+    }
+
+    //gets current Scene name and returns it when we need to double check
+    public string CurrentScene()
+    {
+        return SceneManager.GetActiveScene().name;
     }
 
 }

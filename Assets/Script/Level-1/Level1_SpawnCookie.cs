@@ -13,11 +13,8 @@ public class Level1_SpawnCookie : MonoBehaviour
 
     private string counterCategory;
 
-    //required order of ingredients in  each level 
-    private string[] requiredOrderLevel1 = { "Base", "Syrup", "Decor" };
 
-
-    private string[] currentRequiredOrder;
+    private string[] RequiredOrder = { "Base", "Syrup", "Decor" };
 
 
 
@@ -42,12 +39,12 @@ public class Level1_SpawnCookie : MonoBehaviour
         string category = counterCategory;
 
         // Find the current category index in order
-        int currentIndex = System.Array.IndexOf(currentRequiredOrder, category);
+        int currentIndex = System.Array.IndexOf(RequiredOrder, category);
 
         // Check if all previous categories are already added
         for (int i = 0; i < currentIndex; i++)
         {
-            string requiredCategory = currentRequiredOrder[i];
+            string requiredCategory = RequiredOrder[i];
             if (!currentPlate.HasCategoryBeenAdded(requiredCategory))
             {
                 Debug.LogWarning($"Cannot add {category} before {requiredCategory} is added.");

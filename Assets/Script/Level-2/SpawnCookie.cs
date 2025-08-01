@@ -1,5 +1,4 @@
  using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,12 +23,10 @@ public class SpawnCookie : MonoBehaviour
     {
         counterCategory = gameObject.tag;
 
-        // Get the active scene name
-        string sceneName = SceneManager.GetActiveScene().name;
 
         // If we are in Level-1 and haven't chosen a shape yet,
         // automatically use the default Circle shape
-        if (sceneName == "Level-1")
+        if (GameManager.Instance.CurrentScene() == "Level-1")
         {
             currentShape = cookieShapes[2]; //assign Circle Shape
         }

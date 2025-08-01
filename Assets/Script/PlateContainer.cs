@@ -103,7 +103,7 @@ public class PlateContainer : MonoBehaviour
     }
 
     //!!!!don't forget to update this part later 
-    public (int shapeTypeIndex, int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate()
+    public (int shapeTypeIndex, int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate_Level2()
     {
         int shapeIndex = shapeTypeIndex;
         int baseIndex = baseTypeIndex;   
@@ -111,6 +111,15 @@ public class PlateContainer : MonoBehaviour
         int decorIndex = decorTypeIndex;
 
         return (shapeIndex,baseIndex, syrupIndex, decorIndex);
+    }
+
+    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate_Level1()
+    {
+        int baseIndex = baseTypeIndex;
+        int syrupIndex = syrupTypeIndex;
+        int decorIndex = decorTypeIndex;
+
+        return (baseIndex, syrupIndex, decorIndex);
     }
 
 }
