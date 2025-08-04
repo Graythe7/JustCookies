@@ -11,25 +11,15 @@ public class SpawnCookie : MonoBehaviour
 
     [Header("Shapes Data")]
     public CookieShape[] cookieShapes;        // Assign in inspector
-    private CookieShape currentShape;         // The shape chosen for current cookie by player
 
     private string counterCategory;
 
-    //required order of ingredients in  each level 
-    //private string[] requiredOrderLevel1 = { "Base", "Syrup", "Decor" };
-    private string[] requiredOrder = { "Shape", "Base", "Syrup", "Decor" };
+    //required order of ingredients in level-2
+    private readonly string[] requiredOrder = { "Shape", "Base", "Syrup", "Decor" };
 
     private void Awake()
     {
         counterCategory = gameObject.tag;
-
-
-        // If we are in Level-1 and haven't chosen a shape yet,
-        // automatically use the default Circle shape
-        if (GameManager.Instance.CurrentScene() == "Level-1")
-        {
-            currentShape = cookieShapes[2]; //assign Circle Shape
-        }
         
     }
 
@@ -75,11 +65,26 @@ public class SpawnCookie : MonoBehaviour
         assemblyMachine.ActivateAnimation(true);
         ingredientAnim.ActivateAnimation(ingredientIndex, true);
 
+
+        if (category == "Shape")
+        {
+            currentPlate.currentCookieShape = cookieShapes[ingredientIndex];
+        }
+
+        // --- NEW: Check the shape on the PlateContainer ---
+        if (currentPlate.currentCookieShape == null)
+        {
+            assemblyMachine.CantSpawnAnimation(true);
+            Debug.LogError("A cookie shape must be chosen first.");
+            return;
+        }
+
         // Mark as added
         currentPlate.MarkCategoryAsAdded(category, ingredientIndex);
 
+
         //Actually Spawning the ingredient (this function connected to UI Buttons)
-        StartCoroutine(DelayedSpawn(ingredientIndex, category, currentShape,currentPlate));
+        StartCoroutine(DelayedSpawn(ingredientIndex, category,currentPlate));
 
     }
 
@@ -105,55 +110,45 @@ public class SpawnCookie : MonoBehaviour
     }
 
     //add 1f delay to let the drop prefab animation to play first
-    private IEnumerator DelayedSpawn(int ingredientIndex, string category, CookieShape currentShape,PlateContainer targetPlate)
+    private IEnumerator DelayedSpawn(int ingredientIndex, string category, PlateContainer targetPlate)
     {
         yield return new WaitForSeconds(1f); // wait for drop animation 
 
+        if (targetPlate.currentCookieShape == null)
+        {
+            Debug.LogError("Spawn Error: A cookie shape must be added first.");
+            yield break; // Exit the coroutine immediately to prevent the crash
+        }
+
         GameObject prefabToSpawn = null;
-        
 
         switch (category)
         {
             case "Shape":
-                if (currentShape == null)//since in level-1 we assign shape from very beggining
-                {
-                    currentShape = cookieShapes[ingredientIndex];
-                    this.currentShape = currentShape; // Update the main variable for later stations
-                    prefabToSpawn = currentShape.shapePrefab;
-                    Debug.Log(cookieShapes[ingredientIndex] + "has been added to plate");
-                }
+                prefabToSpawn = targetPlate.currentCookieShape.shapePrefab;
+                Debug.Log($"Shape {targetPlate.currentCookieShape.name} has been added to plate");
                 break;
 
             case "Base":
-                if (currentShape != null)
-                {
-                    prefabToSpawn = currentShape.baseVariants[ingredientIndex];
-                    Debug.Log(currentShape.baseVariants[ingredientIndex] + "has been added to plate");
-                }
-                    
+                prefabToSpawn = targetPlate.currentCookieShape.baseVariants[ingredientIndex];
+                Debug.Log($"Base {prefabToSpawn.name} has been added to plate");
                 break;
 
             case "Syrup":
-                if (currentShape != null)
-                {
-                    prefabToSpawn = currentShape.syrupVariants[ingredientIndex];
-                    Debug.Log(currentShape.syrupVariants[ingredientIndex] + "has been added to plate");
-                }
-                    
+                prefabToSpawn = targetPlate.currentCookieShape.syrupVariants[ingredientIndex];
+                Debug.Log($"Syrup {prefabToSpawn.name} has been added to plate");
                 break;
 
             case "Decor":
-                if (currentShape != null)
-                {
-                    prefabToSpawn = currentShape.syrupVariants[ingredientIndex];
-                    Debug.Log(currentShape.syrupVariants[ingredientIndex] + "has been added to plate");
-                }
-
+                prefabToSpawn = targetPlate.currentCookieShape.decorVariants[ingredientIndex];
+                Debug.Log($"Decor {prefabToSpawn.name} has been added to plate");
                 break;
         }
 
         if (prefabToSpawn != null)
+        {
             AddPrefab(prefabToSpawn, targetPlate);
+        }
 
     }
 
@@ -161,29 +156,22 @@ public class SpawnCookie : MonoBehaviour
     {
         if (targetPlate == null) return;
 
-        Transform parentTransform = targetPlate.transform;
-
-        // If it's a Shape, spawn directly on the plate
-        if (prefab == currentShape.shapePrefab)
+        if (prefab == targetPlate.currentCookieShape.shapePrefab)
         {
-            Vector3 spawnPosition = parentTransform.position + new Vector3(0f, 0.3f, 0f);
-            GameObject shapeObj = Instantiate(prefab, spawnPosition, Quaternion.identity, parentTransform);
-
-            // Save the shape object in plate
+            Transform plateTransform = targetPlate.transform;
+            Vector3 spawnPosition = plateTransform.position + new Vector3(0f, 0.3f, 0f);
+            GameObject shapeObj = Instantiate(prefab, spawnPosition, Quaternion.identity, plateTransform);
             targetPlate.currentShapeObject = shapeObj;
         }
         else
         {
-            // Spawn Base, Syrup, or Decor as a child of the Shape
-            Transform shapeParent = targetPlate.currentShapeObject != null
-                                    ? targetPlate.currentShapeObject.transform
-                                    : parentTransform;
+            if (targetPlate.currentShapeObject == null) return;
+            Transform shapeParent = targetPlate.currentShapeObject.transform;
 
-            // Spawn at local origin of shape (adjust if needed)
-            GameObject ingredientObj = Instantiate(prefab, shapeParent.position, Quaternion.identity, shapeParent);
-
-            // Reset local position for perfect overlay
+            GameObject ingredientObj = Instantiate(prefab, shapeParent);
             ingredientObj.transform.localPosition = Vector3.zero;
+            ingredientObj.transform.localRotation = Quaternion.identity;
+            ingredientObj.transform.localScale = Vector3.one;
         }
     }
 

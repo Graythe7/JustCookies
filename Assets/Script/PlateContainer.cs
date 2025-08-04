@@ -8,8 +8,11 @@ public class PlateContainer : MonoBehaviour
      * Still works with Level 1 because Shape is never queried or marked in that level
      */
 
-    // This stores the spawned Shape GameObject
+    // The instantiated shape object on the plate
     public GameObject currentShapeObject;
+
+    // This will store the ScriptableObject for the current shape ---
+    public CookieShape currentCookieShape;
 
     // Flags to track if a category has been added
     private bool isShapeAdded = false;
