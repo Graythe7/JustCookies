@@ -2490,7 +2490,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -7411891734330873910, guid: 804b4b5ab88c744a2bc2ed5027a53dd6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2910,19 +2910,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cef2c3da67db45b2a7856713b1a13d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseType:
-  - {fileID: 8781646669967174393, guid: 32da774a8f37a4c6a8da8236338e3875, type: 3}
-  - {fileID: 7774886101586662895, guid: 82d728c63e14740d5a18d3cd786f912e, type: 3}
-  - {fileID: 979383566385888613, guid: 29a990643bedd432d87506f38b5afac8, type: 3}
-  SyrupType:
-  - {fileID: 7490160088239075088, guid: 451fa52a82e1e4f0da115f3d53116548, type: 3}
-  - {fileID: 1793739093905920685, guid: d5fcf74cca3904031a7a52a62e2aa88e, type: 3}
-  - {fileID: 6110171700160290324, guid: f2332815cd56b4a6bb64ffe3565a144e, type: 3}
-  DecorType:
-  - {fileID: 748676736721304044, guid: a4db06f3e70454f1ea755e0ba1914330, type: 3}
-  - {fileID: 2889130537339988271, guid: 5617564fc800840d5a630f97b4d58ab4, type: 3}
-  - {fileID: 5284509124433618660, guid: 7db969cd747814cacab734dd46f4dd70, type: 3}
-  - {fileID: 7963312039131404960, guid: 7a4850886be814ef29b5c4b7915e9aef, type: 3}
+  BaseType: []
+  SyrupType: []
+  DecorType: []
+  cookieShapes:
+  - {fileID: 11400000, guid: 9f91556a2bf4d45e7821025d60430f67, type: 2}
+  - {fileID: 11400000, guid: f17225cbebabd42369fae89954b839ad, type: 2}
+  - {fileID: 11400000, guid: 6458c6d2833344f81aa17d2f3f29fd7f, type: 2}
   winStateMonitor: {fileID: 515582379}
 --- !u!1 &700189868
 GameObject:

@@ -41,9 +41,7 @@ public class GameManager : MonoBehaviour
         if (Instance != null && Instance != this)
             Destroy(gameObject);
         else
-            Instance = this;
-
-        
+            Instance = this;     
     }
 
 
@@ -91,7 +89,27 @@ public class GameManager : MonoBehaviour
             if (CurrentScene() == "Level-1")
             {
                 // Get the order from plate
-                var (plateBase, plateSyrup, plateDecor) = plate.CurrentOrderOnPlate_Level1();
+                var (plateBase, plateSyrup, plateDecor) = plate.CurrentOrderOnPlate();
+
+                //Get the order from screen
+                var (screenBase, screenSyrup, screenDecor) = orderScreen.CurrentOrderOnScreen();
+
+                // Compare them, if even one item is false -> all Fail
+                return plateBase == screenBase &&
+                       plateSyrup == screenSyrup &&
+                       plateDecor == screenDecor;
+            }
+            if (CurrentScene() == "Level-2")
+            {
+                //first compare the shapes, if it didn't match the whole level-2 order fails 
+                if (plate.CurrentShapeOnPlate() != orderScreen.CurrentShapeOnScreen())
+                {
+                    return false;
+                }
+
+
+                // Get the order from plate
+                var (plateBase, plateSyrup, plateDecor) = plate.CurrentOrderOnPlate();
 
                 //Get the order from screen
                 var (screenBase, screenSyrup, screenDecor) = orderScreen.CurrentOrderOnScreen();

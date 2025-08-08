@@ -8,10 +8,9 @@ public class PlateContainer : MonoBehaviour
      * Still works with Level 1 because Shape is never queried or marked in that level
      */
 
-    // The instantiated shape object on the plate
-    public GameObject currentShapeObject;
-
+    // The instantiated shape object on the plate in level-2
     // This will store the ScriptableObject for the current shape ---
+    public GameObject currentShapeObject;
     public CookieShape currentCookieShape;
 
     // Flags to track if a category has been added
@@ -105,15 +104,32 @@ public class PlateContainer : MonoBehaviour
         Debug.Log("Decor added:" + isDecorAdded + "type of Decor:" + decorTypeIndex);
     }
 
-    //!!!!don't forget to update this part later 
-    public (int shapeTypeIndex, int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate_Level2()
+    //returns the shape of the plate to compare it later with OrderScreen's Shape
+    public int CurrentShapeOnPlate()
     {
         int shapeIndex = shapeTypeIndex;
+
+        return (shapeIndex);
+    }
+
+    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate()
+    {
+        int baseIndex = baseTypeIndex;
+        int syrupIndex = syrupTypeIndex;
+        int decorIndex = decorTypeIndex;
+
+        return (baseIndex, syrupIndex, decorIndex);
+    }
+
+    /*
+
+    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate_Level2()
+    {
         int baseIndex = baseTypeIndex;   
         int syrupIndex = syrupTypeIndex;
         int decorIndex = decorTypeIndex;
 
-        return (shapeIndex,baseIndex, syrupIndex, decorIndex);
+        return (baseIndex, syrupIndex, decorIndex);
     }
 
     public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate_Level1()
@@ -124,5 +140,7 @@ public class PlateContainer : MonoBehaviour
 
         return (baseIndex, syrupIndex, decorIndex);
     }
+
+    */
 
 }

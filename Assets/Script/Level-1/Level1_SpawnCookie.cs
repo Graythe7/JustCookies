@@ -17,7 +17,6 @@ public class Level1_SpawnCookie : MonoBehaviour
     private string[] RequiredOrder = { "Base", "Syrup", "Decor" };
 
 
-
     private void Awake()
     {
         counterCategory = gameObject.tag;
