@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2cead0c1ad2a44cc4a4dd6c3ecfedcc8
+guid: fb009aa9a26fc40d8bdbcb73ee48531b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3081110174519258262
-    second: HeartBase_0
+      213: -3610850574717202471
+    second: HeartSyrup3 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HeartBase_0
+      name: HeartSyrup3 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
+        y: 0
         width: 32
-        height: 18
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69cef0a116d42ca20800000000000000
-      internalID: 3081110174519258262
+      spriteID: 9df47fc888ea3edc0800000000000000
+      internalID: -3610850574717202471
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fdad0f21f14e64c59908dfc5df7fcda7
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HeartBase_0: 3081110174519258262
+      HeartSyrup3 1_0: -3610850574717202471
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
