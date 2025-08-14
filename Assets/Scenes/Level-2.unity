@@ -2595,7 +2595,7 @@ Animator:
   m_GameObject: {fileID: 619304631}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 082f610d9b4394910a4b3442cf553449, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b311d6b8d89f4844b0d47820d09ca8a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2669,8 +2669,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: -3204563857996971470, guid: 3693f12920da24ab2898b38311b5b22c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2678,7 +2678,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &658880735
@@ -7156,9 +7156,13 @@ MonoBehaviour:
   - type: 0
     dialogue:
       sentences:
-      - Welcome to my kitchen :D
-      - Today, we make cookies.
-      - Tomorrow, we make history.
+      - Great work!
+      - 'But I''ve got a new challenge for you '
+      - 'This time, we''re baking cookies ..
+
+'
+      - "in new shapes!! \n\n"
+      - 'make me proud :) '
   - type: 1
     dialogue:
       sentences:

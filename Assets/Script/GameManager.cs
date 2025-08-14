@@ -157,14 +157,23 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //you win the game when you complete all 5orders with 4/5 accuracy 
+    //you win the game when you complete all 5orders with 4/5 accuracy
+    //if on level-1 -> level-2 opens immediately
+    //on level-2 -> End UI plays 
     public void WinGame()
     {
         isGameComplete = true;
         hasGameWin = true;
 
-        //start chefGray Transition and Win dialogue
-        chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Win);
+        if (CurrentScene() == "Level-1")
+        {
+            StartCoroutine(LoadNextLevelAfterDelay("Level-2", 1f));
+        }
+        else if(CurrentScene() == "Level-2") //normal ending 
+        {
+            //start chefGray Transition and Win dialogue
+            chefGrayDialogue.TriggerDialogue(DialogueTrigger.DialogueType.Win);
+        }
 
     }
 
@@ -204,8 +213,17 @@ public class GameManager : MonoBehaviour
 
     public void RetryGame()
     {
-        // Reload the current active scene (since the scope of game isn't large yet)
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(CurrentScene() == "Level-2" && isGameComplete)
+        {
+            //if the game has ended -> reload the game from very beginning 
+            SceneManager.LoadScene("Level-1");
+        }
+        else
+        {
+            // Reload the current active scene (since the scope of game isn't large yet)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
     }
 
     public void LoadMainMenu()
@@ -238,5 +256,13 @@ public class GameManager : MonoBehaviour
     {
         return SceneManager.GetActiveScene().name;
     }
+
+    private IEnumerator LoadNextLevelAfterDelay(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+
+    }
+
 
 }

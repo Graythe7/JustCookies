@@ -2405,7 +2405,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2659,6 +2659,7 @@ MonoBehaviour:
   - {fileID: 2889130537339988271, guid: 5617564fc800840d5a630f97b4d58ab4, type: 3}
   - {fileID: 5284509124433618660, guid: 7db969cd747814cacab734dd46f4dd70, type: 3}
   - {fileID: 7963312039131404960, guid: 7a4850886be814ef29b5c4b7915e9aef, type: 3}
+  cookieShapes: []
   winStateMonitor: {fileID: 515582379}
 --- !u!1 &700189868
 GameObject:
@@ -3692,7 +3693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &1007428363
 CanvasGroup:
   m_ObjectHideFlags: 0
