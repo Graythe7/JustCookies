@@ -2675,7 +2675,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8, y: 0.525}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -3957,7 +3957,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assemblyMachine: {fileID: 1401218905}
   ingredientAnim: {fileID: 619304634}
-  cookieShapes: []
+  cookieShapes:
+  - {fileID: 11400000, guid: 9f91556a2bf4d45e7821025d60430f67, type: 2}
+  - {fileID: 11400000, guid: f17225cbebabd42369fae89954b839ad, type: 2}
+  - {fileID: 11400000, guid: 6458c6d2833344f81aa17d2f3f29fd7f, type: 2}
 --- !u!212 &971803397
 SpriteRenderer:
   m_ObjectHideFlags: 0
