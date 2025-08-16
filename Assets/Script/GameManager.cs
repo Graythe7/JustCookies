@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
 
         if (CurrentScene() == "Level-1")
         {
-            StartCoroutine(LoadNextLevelAfterDelay("Level-2", 1f));
+            StartCoroutine(LoadNextLevelAfterDelay("Level-2", 1.5f));
         }
         else if(CurrentScene() == "Level-2") //normal ending 
         {
