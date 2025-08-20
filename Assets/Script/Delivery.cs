@@ -50,6 +50,8 @@ public class Delivery : MonoBehaviour
                 //Correct Order Delivered!
                 Destroy(other.gameObject);
 
+                AudioManager.Instance.Play("CorrectOrder");
+
                 //Since the Order is correct, a new Box appears and sends out 
                 GameObject newBox = Instantiate(deliveryBoxPrefab, newBoxSpawnPos.transform.position, Quaternion.identity);
 
@@ -64,6 +66,7 @@ public class Delivery : MonoBehaviour
             {
                 //Try again on the previous order till you get it right
                 //Wrong Order!
+                AudioManager.Instance.Play("WrongOrder");
 
                 //The Old order gotta go to trash
                 StartCoroutine(MoveToTrash(other.transform, trashSpot.transform.position, 1f));

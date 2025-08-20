@@ -40,6 +40,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        AudioManager.Instance.Play("ChefMovement");
         dialogueAnimator.SetBool("isOpen", true);
         chefGrayAnimator.SetBool("isInside", true);
 
@@ -50,7 +51,6 @@ public class DialogueManager : MonoBehaviour
         {
             //sentence assigned in the new queue
             sentences.Enqueue(sentence);
-            
         }
 
         DisplayNextSentence();
@@ -79,17 +79,26 @@ public class DialogueManager : MonoBehaviour
     private float typingSpeed = 0.05f;
     IEnumerator TypeSentence (string sentence)
     {
+        AudioManager.Instance.Play("Dialogue");
+
         dialogueText.text = "";
 
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+
+            if (dialogueText.text == sentence)
+            {
+                AudioManager.Instance.Pause("Dialogue");
+            }
+
             yield return new WaitForSeconds(typingSpeed);
         }
     }
 
     private void EndOfDialogue()
     {
+        AudioManager.Instance.Play("ChefMovement");
         dialogueAnimator.SetBool("isOpen", false);
         chefGrayAnimator.SetBool("isInside", false);
 
@@ -98,6 +107,8 @@ public class DialogueManager : MonoBehaviour
 
         //when dialogue ends trigger the end of the level UI Elements
         GameManager.Instance.EndOfGameUI();
+
+        AudioManager.Instance.Stop("Dialogue");
     }
 
     

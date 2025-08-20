@@ -27,10 +27,14 @@ public class SpawnCookie : MonoBehaviour
     // Connect to Button to add visuals 
     public void SpawnIngredient(int ingredientIndex)
     {
+        //the function is called everytime a buttons is clicked, so:
+        AudioManager.Instance.Play("ButtonClicked");
+
         //if no plate detected, skip this method completely
         if (currentPlate == null)
         {
             assemblyMachine.CantSpawnAnimation(true);
+            AudioManager.Instance.Play("AssemblyMachineNope");
             return;
         }
 
@@ -49,6 +53,7 @@ public class SpawnCookie : MonoBehaviour
             {
                 Debug.LogWarning($"Cannot add {category} before {requiredCategory} is added.");
                 assemblyMachine.CantSpawnAnimation(true);
+                AudioManager.Instance.Play("AssemblyMachineNope");
                 return;
             }
         }
@@ -58,6 +63,7 @@ public class SpawnCookie : MonoBehaviour
         if (currentPlate.HasCategoryBeenAdded(category))
         {
             assemblyMachine.CantSpawnAnimation(true);
+            AudioManager.Instance.Play("AssemblyMachineNope");
             return;
         }
 
@@ -125,21 +131,29 @@ public class SpawnCookie : MonoBehaviour
         switch (category)
         {
             case "Shape":
+                AudioManager.Instance.Play("ShapeSpawn");
+
                 prefabToSpawn = targetPlate.currentCookieShape.shapePrefab;
                 Debug.Log($"Shape {targetPlate.currentCookieShape.name} has been added to plate");
                 break;
 
             case "Base":
+                AudioManager.Instance.Play("BaseSpawn");
+
                 prefabToSpawn = targetPlate.currentCookieShape.baseVariants[ingredientIndex];
                 Debug.Log($"Base {prefabToSpawn.name} has been added to plate");
                 break;
 
             case "Syrup":
+                AudioManager.Instance.Play("SyrupSpawn");
+
                 prefabToSpawn = targetPlate.currentCookieShape.syrupVariants[ingredientIndex];
                 Debug.Log($"Syrup {prefabToSpawn.name} has been added to plate");
                 break;
 
             case "Decor":
+                AudioManager.Instance.Play("DecorSpawn");
+
                 prefabToSpawn = targetPlate.currentCookieShape.decorVariants[ingredientIndex];
                 Debug.Log($"Decor {prefabToSpawn.name} has been added to plate");
                 break;

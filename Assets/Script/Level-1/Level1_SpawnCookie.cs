@@ -26,10 +26,14 @@ public class Level1_SpawnCookie : MonoBehaviour
     // Connect to Button to add visuals 
     public void SpawnIngredient(int ingredientIndex)
     {
+        //the function is called everytime a buttons is clicked, so:
+        AudioManager.Instance.Play("ButtonClicked");
+
         //if no plate detected, skip this method completely
         if (currentPlate == null)
         {
             assemblyMachine.CantSpawnAnimation(true);
+            AudioManager.Instance.Play("AssemblyMachineNope");
             return;
         }
 
@@ -48,6 +52,7 @@ public class Level1_SpawnCookie : MonoBehaviour
             {
                 Debug.LogWarning($"Cannot add {category} before {requiredCategory} is added.");
                 assemblyMachine.CantSpawnAnimation(true);
+                AudioManager.Instance.Play("AssemblyMachineNope");
                 return;
             }
         }
@@ -57,8 +62,12 @@ public class Level1_SpawnCookie : MonoBehaviour
         if (currentPlate.HasCategoryBeenAdded(category))
         {
             assemblyMachine.CantSpawnAnimation(true);
+            AudioManager.Instance.Play("AssemblyMachineNope");
             return;
         }
+
+        //play audio based on category
+        AssemblyMachineAudio(category);
 
         // Proceed with spawn
         assemblyMachine.ActivateAnimation(true);
@@ -67,7 +76,6 @@ public class Level1_SpawnCookie : MonoBehaviour
 
         // Mark as added
         currentPlate.MarkCategoryAsAdded(category, ingredientIndex);
-
 
     }
 
@@ -108,5 +116,28 @@ public class Level1_SpawnCookie : MonoBehaviour
         //the originalScale is for the distorbed ratio of the child (ingredient), not sure if I still need it 
         Vector3 originalScale = newIngredient.transform.localScale;
         newIngredient.transform.localScale = new Vector3(originalScale.x * 1f, originalScale.y * 1f, originalScale.z);
+    }
+
+    private void AssemblyMachineAudio(string machineCategory)
+    {
+        switch (machineCategory)
+        {
+            case "Shape":
+                AudioManager.Instance.Play("ShapwSpawn");
+                break;
+
+            case "Base":
+                AudioManager.Instance.Play("BaseSpawn");
+                break;
+
+            case "Syrup":
+                AudioManager.Instance.Play("SyrupSpawn");
+                break;
+
+            case "Decor":
+                AudioManager.Instance.Play("DecorSpawn");
+                break;
+
+        }
     }
 }

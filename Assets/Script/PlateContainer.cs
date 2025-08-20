@@ -121,26 +121,4 @@ public class PlateContainer : MonoBehaviour
         return (baseIndex, syrupIndex, decorIndex);
     }
 
-    /*
-
-    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate_Level2()
-    {
-        int baseIndex = baseTypeIndex;   
-        int syrupIndex = syrupTypeIndex;
-        int decorIndex = decorTypeIndex;
-
-        return (baseIndex, syrupIndex, decorIndex);
-    }
-
-    public (int baseIndex, int syrupIndex, int decorIndex) CurrentOrderOnPlate_Level1()
-    {
-        int baseIndex = baseTypeIndex;
-        int syrupIndex = syrupTypeIndex;
-        int decorIndex = decorTypeIndex;
-
-        return (baseIndex, syrupIndex, decorIndex);
-    }
-
-    */
-
 }

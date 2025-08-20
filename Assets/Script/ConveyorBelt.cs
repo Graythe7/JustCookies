@@ -25,6 +25,8 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (currentPlate != null)
             StartCoroutine(MoveObjectSmoothly(currentPlate, movementDistant, 0.3f));
+
+        AudioManager.Instance.Play("RightArrow");
     }
 
     public void MoveBackward()
@@ -41,6 +43,8 @@ public class ConveyorBelt : MonoBehaviour
             }
 
             StartCoroutine(MoveObjectSmoothly(currentPlate, -movementDistant, 0.3f));
+
+            AudioManager.Instance.Play("LeftArrow");
         }
             
     }

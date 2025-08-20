@@ -36,6 +36,8 @@ public class OrderScreen : MonoBehaviour
         // Clear previous visuals
         ClearVisuals();
 
+        AudioManager.Instance.Play("NewOrder");
+
         if (GameManager.Instance.hasGameWin)
         {
             winStateMonitor.gameObject.SetActive(true);

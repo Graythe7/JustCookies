@@ -165,6 +165,8 @@ public class GameManager : MonoBehaviour
         isGameComplete = true;
         hasGameWin = true;
 
+        AudioManager.Instance.Play("WinRound");
+
         if (CurrentScene() == "Level-1")
         {
             StartCoroutine(LoadNextLevelAfterDelay("Level-2", 1.5f));
@@ -198,6 +200,8 @@ public class GameManager : MonoBehaviour
 
         if (hasGameWin)
         {
+            FindAnyObjectByType<AudioManager>().Play("Victory");
+
             gameResultText.text = "VICTORY";
 
         }else if (!hasGameWin)

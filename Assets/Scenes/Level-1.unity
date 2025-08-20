@@ -4140,6 +4140,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090301879}
   m_CullTransparentMesh: 1
+--- !u!1 &1096179864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1096179866}
+  - component: {fileID: 1096179865}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1096179865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096179864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ea2f1a2b6464f1cb6bee66ac611421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Dialogue
+    clip: {fileID: 8300000, guid: 0b446c8e597d24bab9c4be61a2e6d001, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: e40aefc528b8b4b5b8ee62057d83b5e1, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: ChefMovement
+    clip: {fileID: 8300000, guid: acfcc99bd5b7c45f89a4a653b8092ae8, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: ButtonClicked
+    clip: {fileID: 8300000, guid: 27172ce0d09b144c892ad32d018e7c9d, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: AssemblyMachineNope
+    clip: {fileID: 8300000, guid: 659303c489e1a4a2e8ce80e853c0fb93, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: BaseSpawn
+    clip: {fileID: 8300000, guid: 4fe050fb1c3314592832c853eba0652e, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: SyrupSpawn
+    clip: {fileID: 8300000, guid: 2f8a68886764a4e708dec77754f5c5ef, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: DecorSpawn
+    clip: {fileID: 8300000, guid: 2c91db15744c1438dadb556b824eca36, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: LeftArrow
+    clip: {fileID: 8300000, guid: 93431951914774ec9ad400d0d754684c, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: RightArrow
+    clip: {fileID: 8300000, guid: 209f93b1b60df4b9d82e23205eca4bf3, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: CorrectOrder
+    clip: {fileID: 8300000, guid: e80d76867023c4fceb99384148a4c7ae, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: WrongOrder
+    clip: {fileID: 8300000, guid: d9b9381d3261e4d4f826f849cf3c1a02, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: WinRound
+    clip: {fileID: 8300000, guid: b2a1d015b37dd4982ae8fe86f1e22df3, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: NewOrder
+    clip: {fileID: 8300000, guid: 70a037bfdc0e646078897e0968f8d714, type: 3}
+    volume: 0.66
+    source: {fileID: 0}
+--- !u!4 &1096179866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096179864}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2080027, y: -0.25632808, z: -0.04519387}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1134274568
 GameObject:
   m_ObjectHideFlags: 0
@@ -6662,7 +6763,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.19, y: 0.9}
+  m_Size: {x: 0.32, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -6901,6 +7002,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1181479585}
+  - {fileID: 1096179866}
   - {fileID: 48028283}
   - {fileID: 1190908796}
   - {fileID: 1014857390}
